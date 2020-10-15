@@ -5,7 +5,7 @@ class GetStarted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Theme.of(context).primaryColor,
       body: _buildBody(context),
     );
   }
@@ -17,7 +17,7 @@ class GetStarted extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _header(),
-              Expanded(child: _content()),
+              Expanded(child: _content(context)),
               _button(context),
             ],
           )),
@@ -40,14 +40,14 @@ class GetStarted extends StatelessWidget {
     );
   }
 
-  Widget _content() {
+  Widget _content(BuildContext context) {
     List<String> lists = const [
       "Membantu kamu mencapai resolusi hidup",
       "Mengatur jenis aktivitas, dengan fitur pengingat",
       "Dapatkan rangkuman data selama perjalanan istiqomah kamu"
     ];
 
-    List<Widget> listWidget = _createListWidget(lists);
+    List<Widget> listWidget = _createListWidget(context, lists);
 
     return (Container(
       width: double.infinity,
@@ -62,7 +62,7 @@ class GetStarted extends StatelessWidget {
     return FlatButton(
       minWidth: 300,
       color: Colors.white,
-      textColor: Colors.blue,
+      textColor: Theme.of(context).primaryColor,
       disabledColor: Colors.grey,
       disabledTextColor: Colors.black,
       padding: EdgeInsets.all(20),
@@ -78,10 +78,11 @@ class GetStarted extends StatelessWidget {
   }
 
   // Create List Widget from List<String>
-  List<Widget> _createListWidget(List<String> items) {
+  List<Widget> _createListWidget(BuildContext context, List<String> items) {
     TextStyle textStyle =
         TextStyle(fontSize: 28, color: Colors.white, height: 1.5);
-    TextStyle numberStyle = TextStyle(fontSize: 20, color: Colors.blue);
+    TextStyle numberStyle =
+        TextStyle(fontSize: 20, color: Theme.of(context).primaryColor);
     List<Widget> result = [];
 
     var number = 1;
