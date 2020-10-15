@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 
-class MyAppBar extends StatelessWidget with PreferredSizeWidget {
-  @override
-  final Size preferredSize;
-
-  final String title;
-
-  MyAppBar({Key key, this.title})
-      : preferredSize = Size.fromHeight(50.0),
-        super(key: key);
-
+class MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Text(this.title),
-      elevation: 0,
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      child: Text(
+        'ISTIQOMAH',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }

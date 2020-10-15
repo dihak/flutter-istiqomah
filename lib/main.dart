@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/routes.dart';
 import 'package:istiqomah/ui/get_started.dart';
-import 'package:istiqomah/widgets/app_bar.dart';
 
 void main() => runApp(IstiqomahApp());
 
