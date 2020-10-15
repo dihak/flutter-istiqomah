@@ -13,7 +13,7 @@ class GetStarted extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return SafeArea(
       child: Container(
-          padding: EdgeInsets.symmetric(vertical: 50),
+          padding: EdgeInsets.all(50),
           child: Column(
             children: <Widget>[
               _header(),
@@ -51,7 +51,6 @@ class GetStarted extends StatelessWidget {
 
     return (Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: listWidget,
