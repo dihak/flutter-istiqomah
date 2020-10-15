@@ -82,8 +82,7 @@ class GetStarted extends StatelessWidget {
   List<Widget> _createListWidget(List<String> items) {
     TextStyle textStyle =
         TextStyle(fontSize: 28, color: Colors.white, height: 1.5);
-    TextStyle numberStyle =
-        TextStyle(fontSize: 24, color: Colors.blue, height: 1.5);
+    TextStyle numberStyle = TextStyle(fontSize: 20, color: Colors.blue);
     List<Widget> result = [];
 
     var number = 1;
