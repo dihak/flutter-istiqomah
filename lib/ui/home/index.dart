@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:istiqomah/ui/home/add_habit.dart';
+import 'package:istiqomah/widgets/habits/habits.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -14,30 +14,32 @@ class Home extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return SafeArea(
       child: Container(
+        child: ListView(
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
-          child: Column(
-            children: <Widget>[
-              _header(context),
-              Expanded(child: _content()),
-            ],
-          )),
+          children: <Widget>[
+            _header(context),
+            _content(),
+          ],
+        ),
+      ),
     );
   }
 
   Widget _header(BuildContext context) {
     return Container(
       width: double.infinity,
+      margin: EdgeInsets.only(bottom: 20),
       child: Row(children: [
         Expanded(
-            child: Text(
-          'ISTIQOMAH',
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
+          child: Text(
+            'ISTIQOMAH',
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        )),
+        ),
         RawMaterialButton(
           fillColor: Colors.white,
           shape: new CircleBorder(),
@@ -55,10 +57,12 @@ class Home extends StatelessWidget {
   }
 
   Widget _content() {
-    return SafeArea(
-      child: Center(
-        child: Text('Content'),
-      ),
+    return HabitList(
+      habits: [
+        Habit(name: 'Sholat Shubuh di Masjid'),
+        Habit(name: 'Dzikir Pagi'),
+        Habit(name: 'Sholat Dhuha'),
+      ],
     );
   }
 }
