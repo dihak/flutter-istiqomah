@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/widgets/habits/habits.dart';
+import 'package:istiqomah/widgets/habits/modal/add.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -45,7 +46,7 @@ class Home extends StatelessWidget {
           shape: new CircleBorder(),
           constraints: BoxConstraints.expand(width: 50, height: 50),
           onPressed: () {
-            Habit.addModal(context);
+            modalAddHabit(context);
           },
           child: Icon(
             Icons.add,

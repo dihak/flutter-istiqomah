@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/widgets/habits/item/item.dart';
-import 'package:istiqomah/widgets/habits/modal/add.dart';
 
 class Habit {
   const Habit({this.name});
   final String name;
-
-  static void addModal(context) {
-    modalAddHabit(context);
-  }
 }
 
 class HabitList extends StatefulWidget {
