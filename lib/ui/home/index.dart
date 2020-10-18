@@ -8,7 +8,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<String> dataHabit = ['Sholat Shubuh di Masjid'];
+  final List<Map<String, dynamic>> dataHabit = [
+    {
+      'name': 'Sholat Shubuh di Masjid',
+      'data': [15, 13, 12],
+    }
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +57,11 @@ class _HomeState extends State<Home> {
             modalAddHabit(context).then(
               (value) => {
                 if (value != null && value != '')
-                  setState(() => dataHabit.add(value)),
+                  setState(
+                    () => {
+                      dataHabit.add({'name': value}),
+                    },
+                  ),
               },
             );
           },
@@ -67,7 +76,7 @@ class _HomeState extends State<Home> {
 
   Widget _content() {
     return HabitList(
-      habits: [for (var item in dataHabit) Habit(name: item)],
+      habits: [for (var item in dataHabit) Habit(name: item['name'])],
     );
   }
 }

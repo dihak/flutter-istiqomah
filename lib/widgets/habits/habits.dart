@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:istiqomah/widgets/habits/item/item.dart';
 
 class Habit {
-  const Habit({this.name});
+  const Habit({this.name, this.data});
   final String name;
+  final List data;
 }
 
 class HabitList extends StatefulWidget {

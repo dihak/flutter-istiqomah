@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:istiqomah/widgets/habits/habits.dart';
+import 'package:istiqomah/widgets/habits/item/date.dart';
 
 const TextStyle title = TextStyle(
   fontSize: 24,
@@ -51,31 +51,22 @@ class _HabitItemState extends State<HabitItem> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _date(),
-        _date(),
-        _date(),
-        _date(),
-        _date(),
-      ],
-    );
-  }
-
-  Widget _date() {
-    return Column(
-      children: [
-        Text("SEN"),
-        Container(
-          width: 50,
-          height: 50,
-          margin: EdgeInsets.only(top: 5),
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: Text("20"),
-          ),
-        )
+        HabitDate(
+          date: '2020-10-13',
+          isChecked: true,
+        ),
+        HabitDate(
+          date: '2020-10-14',
+        ),
+        HabitDate(
+          date: '2020-10-15',
+        ),
+        HabitDate(
+          date: '2020-10-16',
+        ),
+        HabitDate(
+          date: '2020-10-17',
+        ),
       ],
     );
   }
