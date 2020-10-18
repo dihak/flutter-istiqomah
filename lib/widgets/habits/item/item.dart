@@ -51,22 +51,11 @@ class _HabitItemState extends State<HabitItem> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        HabitDate(
-          date: '2020-10-13',
-          isChecked: true,
-        ),
-        HabitDate(
-          date: '2020-10-14',
-        ),
-        HabitDate(
-          date: '2020-10-15',
-        ),
-        HabitDate(
-          date: '2020-10-16',
-        ),
-        HabitDate(
-          date: '2020-10-17',
-        ),
+        for (var i = 13; i < 19; i++)
+          HabitDate(
+            date: ('2020-10-' + i.toString()),
+            isChecked: widget.habit.data?.indexOf(i) != -1,
+          )
       ],
     );
   }

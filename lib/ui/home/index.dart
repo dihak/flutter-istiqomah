@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:istiqomah/models/habit.dart';
 import 'package:istiqomah/widgets/habits/habits.dart';
 import 'package:istiqomah/widgets/habits/modal/add.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,13 +10,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<Map<String, dynamic>> dataHabit = [
-    {
-      'name': 'Sholat Shubuh di Masjid',
-      'data': [15, 13, 12],
-    }
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +21,10 @@ class _HomeState extends State<Home> {
             padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
             children: <Widget>[
               _header(context),
-              _content(),
+              Consumer<HabitModel>(
+                builder: (context, data, child) =>
+                    HabitList(habits: data.habit),
+              ),
             ],
           ),
         ),
@@ -57,11 +55,9 @@ class _HomeState extends State<Home> {
             modalAddHabit(context).then(
               (value) => {
                 if (value != null && value != '')
-                  setState(
-                    () => {
-                      dataHabit.add({'name': value}),
-                    },
-                  ),
+                  Provider.of<HabitModel>(context, listen: false).add(
+                    Habit(name: value),
+                  )
               },
             );
           },
@@ -71,12 +67,6 @@ class _HomeState extends State<Home> {
           ),
         )
       ]),
-    );
-  }
-
-  Widget _content() {
-    return HabitList(
-      habits: [for (var item in dataHabit) Habit(name: item['name'])],
     );
   }
 }

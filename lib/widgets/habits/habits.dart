@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:istiqomah/widgets/habits/item/item.dart';
 
 class Habit {
-  const Habit({this.name, this.data});
+  const Habit({this.name, this.data = const []});
   final String name;
   final List data;
 }
