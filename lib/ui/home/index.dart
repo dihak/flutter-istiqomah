@@ -2,25 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:istiqomah/widgets/habits/habits.dart';
 import 'package:istiqomah/widgets/habits/modal/add.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final List<String> dataHabit = ['Sholat Shubuh di Masjid'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       backgroundColor: Theme.of(context).primaryColor,
-      body: _buildBody(context),
-    );
-  }
-
-  Widget _buildBody(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        child: ListView(
-          padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
-          children: <Widget>[
-            _header(context),
-            _content(),
-          ],
+      body: SafeArea(
+        child: Container(
+          child: ListView(
+            padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+            children: <Widget>[
+              _header(context),
+              _content(),
+            ],
+          ),
         ),
       ),
     );
@@ -46,7 +49,12 @@ class Home extends StatelessWidget {
           shape: new CircleBorder(),
           constraints: BoxConstraints.expand(width: 50, height: 50),
           onPressed: () {
-            modalAddHabit(context);
+            modalAddHabit(context).then(
+              (value) => {
+                if (value != null && value != '')
+                  setState(() => dataHabit.add(value)),
+              },
+            );
           },
           child: Icon(
             Icons.add,
@@ -59,11 +67,7 @@ class Home extends StatelessWidget {
 
   Widget _content() {
     return HabitList(
-      habits: [
-        Habit(name: 'Sholat Shubuh di Masjid'),
-        Habit(name: 'Dzikir Pagi'),
-        Habit(name: 'Sholat Dhuha'),
-      ],
+      habits: [for (var item in dataHabit) Habit(name: item)],
     );
   }
 }

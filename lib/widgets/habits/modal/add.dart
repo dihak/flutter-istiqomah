@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-void modalAddHabit(BuildContext context) {
-  showModalBottomSheet(
+Future modalAddHabit(BuildContext context) async {
+  final inputController = TextEditingController();
+
+  return showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(40.0),
@@ -41,6 +43,7 @@ void modalAddHabit(BuildContext context) {
             padding: EdgeInsets.only(bottom: 20),
             child: TextField(
               autofocus: true,
+              controller: inputController,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Color(0x33FFFFFF),
@@ -59,7 +62,9 @@ void modalAddHabit(BuildContext context) {
                 disabledTextColor: Colors.black,
                 splashColor: Colors.blue[50],
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context, inputController.text);
+                },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
