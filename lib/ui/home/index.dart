@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habit.dart';
 import 'package:istiqomah/widgets/habits/habits.dart';
-import 'package:istiqomah/widgets/habits/modal/add.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -22,8 +21,17 @@ class _HomeState extends State<Home> {
             children: <Widget>[
               _header(context),
               Consumer<HabitModel>(
-                builder: (context, data, child) =>
-                    HabitList(habits: data.habit),
+                builder: (context, data, child) => HabitList(children: [
+                  for (var item in data.habit)
+                    HabitItem(
+                      name: item.name,
+                      data: item.data,
+                      toggleDate: (date) {
+                        item.toggelDate(date);
+                        data.update();
+                      },
+                    ),
+                ]),
               ),
             ],
           ),
@@ -56,7 +64,7 @@ class _HomeState extends State<Home> {
               (value) => {
                 if (value != null && value != '')
                   Provider.of<HabitModel>(context, listen: false).add(
-                    Habit(name: value),
+                    Habit(name: value, data: []),
                   )
               },
             );

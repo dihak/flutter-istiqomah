@@ -26,7 +26,7 @@ class HabitDate extends StatelessWidget {
       children: [
         Text(dayName[weekday]),
         GestureDetector(
-          onTap: () => {if (onChange != null) onChange(!isChecked)},
+          onTap: () => {if (onChange != null) onChange()},
           child: Container(
             width: 50,
             height: 50,

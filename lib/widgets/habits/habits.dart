@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/widgets/habits/item/item.dart';
-
-class Habit {
-  const Habit({this.name, this.data = const []});
-  final String name;
-  final List data;
-}
+export 'package:istiqomah/widgets/habits/item/item.dart';
+export 'package:istiqomah/widgets/habits/modal/add.dart';
 
 class HabitList extends StatefulWidget {
-  HabitList({Key key, this.habits}) : super(key: key);
+  HabitList({Key key, this.children}) : super(key: key);
 
-  final List<Habit> habits;
+  final List<HabitItem> children;
 
   @override
   _HabitListState createState() => _HabitListState();
@@ -21,13 +17,7 @@ class _HabitListState extends State<HabitList> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: widget.habits
-          .map(
-            (item) => HabitItem(
-              habit: item,
-            ),
-          )
-          .toList(),
+      children: widget.children,
     );
   }
 }

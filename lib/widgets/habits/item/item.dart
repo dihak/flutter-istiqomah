@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:istiqomah/widgets/habits/habits.dart';
 import 'package:istiqomah/widgets/habits/item/date.dart';
 
 const TextStyle title = TextStyle(
@@ -8,9 +7,11 @@ const TextStyle title = TextStyle(
 );
 
 class HabitItem extends StatefulWidget {
-  HabitItem({this.habit}) : super(key: ObjectKey(habit));
+  HabitItem({this.name, this.data, this.toggleDate});
 
-  final Habit habit;
+  final String name;
+  final List data;
+  final Function toggleDate;
 
   _HabitItemState createState() => _HabitItemState();
 }
@@ -41,7 +42,7 @@ class _HabitItemState extends State<HabitItem> {
     return Padding(
       padding: EdgeInsets.only(bottom: 15),
       child: Text(
-        widget.habit.name,
+        widget.name,
         style: title,
       ),
     );
@@ -54,7 +55,8 @@ class _HabitItemState extends State<HabitItem> {
         for (var i = 13; i < 19; i++)
           HabitDate(
             date: ('2020-10-' + i.toString()),
-            isChecked: widget.habit.data?.indexOf(i) != -1,
+            isChecked: widget.data?.indexOf(i) != -1,
+            onChange: () => widget.toggleDate(i),
           )
       ],
     );
