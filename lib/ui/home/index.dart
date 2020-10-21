@@ -24,13 +24,19 @@ class _HomeState extends State<Home> {
                 builder: (context, data, child) => HabitList(children: [
                   for (var item in data.habit)
                     HabitItem(
+                      id: item.id,
                       name: item.name,
                       data: item.data,
                       toggleDate: (date) {
                         item.toggelDate(date);
                         data.update();
                       },
-                    ),
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        '/detail',
+                        arguments: item,
+                      ),
+                    )
                 ]),
               ),
             ],
@@ -63,9 +69,8 @@ class _HomeState extends State<Home> {
             modalAddHabit(context).then(
               (value) => {
                 if (value != null && value != '')
-                  Provider.of<HabitModel>(context, listen: false).add(
-                    Habit(name: value, data: []),
-                  )
+                  Provider.of<HabitModel>(context, listen: false)
+                      .add(name: value)
               },
             );
           },

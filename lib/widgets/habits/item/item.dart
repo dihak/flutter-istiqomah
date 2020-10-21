@@ -7,11 +7,13 @@ const TextStyle title = TextStyle(
 );
 
 class HabitItem extends StatefulWidget {
-  HabitItem({this.name, this.data, this.toggleDate});
+  HabitItem({this.id, this.name, this.data, this.toggleDate, this.onTap});
 
+  final int id;
   final String name;
   final List data;
   final Function toggleDate;
+  final Function onTap;
 
   _HabitItemState createState() => _HabitItemState();
 }
@@ -19,21 +21,24 @@ class HabitItem extends StatefulWidget {
 class _HabitItemState extends State<HabitItem> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      margin: EdgeInsets.only(bottom: 20),
-      decoration: BoxDecoration(
-        color: Color(0xff559DFF),
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: Container(
+        padding: EdgeInsets.all(20),
+        margin: EdgeInsets.only(bottom: 20),
+        decoration: BoxDecoration(
+          color: Color(0xff559DFF),
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _header(),
-          _checklist(),
-        ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _header(),
+            _checklist(),
+          ],
+        ),
       ),
     );
   }

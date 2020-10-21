@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Habit {
-  const Habit({@required this.name, @required this.data});
+  const Habit({@required this.id, @required this.name, @required this.data});
+  final int id;
   final String name;
   final List data;
 
@@ -18,16 +19,17 @@ class Habit {
 class HabitModel extends ChangeNotifier {
   /// Internal, private state of the cart.
   final List<Habit> _items = [
-    Habit(name: 'Sholat Shubuh di Masjid', data: [13, 14, 15, 17]),
-    Habit(name: 'Sholat Dzuhur di Masjid', data: []),
+    Habit(id: 1, name: 'Sholat Shubuh di Masjid', data: [13, 14, 15, 17]),
+    Habit(id: 2, name: 'Sholat Dzuhur di Masjid', data: []),
   ];
 
   /// Get habit
   List<Habit> get habit => _items;
 
   /// Add habit
-  void add(Habit item) {
-    _items.add(item);
+  void add({@required name}) {
+    final int id = _items.length + 1;
+    _items.add(Habit(id: id, name: name, data: []));
     notifyListeners();
   }
 
