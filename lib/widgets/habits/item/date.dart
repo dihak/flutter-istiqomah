@@ -22,22 +22,24 @@ class HabitDate extends StatelessWidget {
       border: Border.all(color: Colors.white),
     );
 
-    return Column(
-      children: [
-        Text(dayName[weekday]),
-        GestureDetector(
-          onTap: () => {if (onChange != null) onChange()},
-          child: Container(
-            width: 50,
-            height: 50,
-            margin: EdgeInsets.only(top: 5),
-            decoration: isChecked ? active : inActive,
-            child: Center(
-              child: Text(datetime.day.toString()),
+    return GestureDetector(
+      onTap: () => {if (onChange != null) onChange()},
+      child: Container(
+        child: Column(
+          children: [
+            Text(dayName[weekday]),
+            Container(
+              width: 50,
+              height: 50,
+              margin: EdgeInsets.only(top: 5),
+              decoration: isChecked ? active : inActive,
+              child: Center(
+                child: Text(datetime.day.toString()),
+              ),
             ),
-          ),
-        )
-      ],
+          ],
+        ),
+      ),
     );
   }
 }
