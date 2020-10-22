@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habit.dart';
+import 'package:istiqomah/ui/detail/_date.dart';
+import 'package:istiqomah/ui/detail/_header.dart';
 
 class Detail extends StatefulWidget {
   @override
@@ -19,13 +21,11 @@ class _DetailState extends State<Detail> {
           child: ListView(
             padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
             children: <Widget>[
-              Text(
-                habit.name,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                ),
+              Header(habit.name),
+              SizedBox(
+                height: 20,
               ),
+              Date(),
             ],
           ),
         ),
