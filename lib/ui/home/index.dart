@@ -24,19 +24,22 @@ class _HomeState extends State<Home> {
                 builder: (context, data, child) => HabitList(children: [
                   for (var item in data.habit)
                     HabitItem(
-                      id: item.id,
-                      name: item.name,
-                      data: item.data,
-                      toggleDate: (date) {
-                        item.toggelDate(date);
-                        data.update();
-                      },
-                      onTap: () => Navigator.pushNamed(
-                        context,
-                        '/detail',
-                        arguments: item,
-                      ),
-                    )
+                        id: item.id,
+                        name: item.name,
+                        data: item.data,
+                        toggleDate: (date) {
+                          Feedback.forTap(context);
+                          item.toggelDate(date);
+                          data.update();
+                        },
+                        onTap: () {
+                          Feedback.forTap(context);
+                          Navigator.pushNamed(
+                            context,
+                            '/detail',
+                            arguments: item,
+                          );
+                        })
                 ]),
               ),
             ],
