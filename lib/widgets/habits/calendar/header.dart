@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CalendarHeader extends StatelessWidget {
+  CalendarHeader(this.text);
+
+  final String text;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +22,7 @@ class CalendarHeader extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              'Des 2020',
+              text,
               textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),

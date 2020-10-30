@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istiqomah/constants/app.dart';
 import 'header.dart';
 import 'date-item.dart';
 
@@ -21,7 +22,8 @@ class Calendar extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CalendarHeader(),
+          CalendarHeader(
+              monthShortName[date.month - 1] + " " + date.year.toString()),
           SizedBox(height: 10),
           Column(
             children: [
