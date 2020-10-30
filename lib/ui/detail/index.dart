@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habit.dart';
-import 'package:istiqomah/ui/detail/_date.dart';
 import 'package:istiqomah/ui/detail/_header.dart';
+import 'package:istiqomah/widgets/habits/calendar/calendar.dart';
 
 class Detail extends StatefulWidget {
   @override
@@ -23,9 +23,11 @@ class _DetailState extends State<Detail> {
             children: <Widget>[
               Header(habit.name),
               SizedBox(
-                height: 20,
+                height: 30,
               ),
-              Date(),
+              Calendar(
+                date: new DateTime.now(),
+              ),
             ],
           ),
         ),
