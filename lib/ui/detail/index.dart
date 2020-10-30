@@ -25,7 +25,9 @@ class _DetailState extends State<Detail> {
               SizedBox(
                 height: 30,
               ),
-              Calendar(),
+              Calendar(
+                date: new DateTime.now(),
+              ),
             ],
           ),
         ),

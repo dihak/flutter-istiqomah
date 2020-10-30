@@ -3,6 +3,10 @@ import 'header.dart';
 import 'date-item.dart';
 
 class Calendar extends StatelessWidget {
+  final DateTime date;
+
+  Calendar({this.date});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,21 +50,42 @@ class Calendar extends StatelessWidget {
   }
 
   Widget _dateGrid() {
-    return Column(
-      children: [
-        Row(
+    // Get first date of calendar
+    var firstDate = DateTime.utc(date.year, date.month, 1);
+    var firstWeekInCalendar = DateTime.monday - firstDate.weekday;
+    firstDate = firstDate.add(Duration(days: firstWeekInCalendar));
+
+    // Get last date of calendar
+    var lastDate = DateTime.utc(date.year, date.month + 1, 0);
+    var lastWeekInCalendar = DateTime.sunday - lastDate.weekday;
+    lastDate = lastDate.add(Duration(days: lastWeekInCalendar));
+
+    // Generate widget
+    List<Row> columnLists = [];
+    var current = firstDate;
+    var row = 0;
+    var column = -1;
+    while (current.compareTo(lastDate) <= 0) {
+      if (row % 7 == 0) {
+        // Create row
+        columnLists.add(Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            DateItem(date: 30, isSecondary: true),
-            DateItem(date: 31, isSecondary: true),
-            DateItem(date: 1, active: true),
-            DateItem(date: 2, active: true),
-            DateItem(date: 3),
-            DateItem(date: 4),
-            DateItem(date: 5),
-          ],
-        ),
-      ],
+          children: [],
+        ));
+        column++;
+      }
+
+      // Add dateItem Widget
+      columnLists[column].children.add(DateItem(
+          date: current.day, isSecondary: date.month != current.month));
+
+      // Increase current
+      current = current.add(Duration(days: 1));
+      row++;
+    }
+
+    return Column(
+      children: columnLists,
     );
   }
 }
