@@ -61,16 +61,24 @@ class _HabitItemState extends State<HabitItem> {
   }
 
   Widget _checklist() {
+    final List<HabitDate> dateList = [];
+    final DateTime currentDate = new DateTime.now();
+
+    for (var i = 5; i >= 0; i--) {
+      var date = currentDate.subtract(Duration(days: i));
+      var dateString = date.toString().substring(0, 10);
+      dateList.add(
+        HabitDate(
+          date: dateString,
+          isChecked: widget.data?.indexOf(i) != -1,
+          onChange: () => widget.toggleDate(i),
+        ),
+      );
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        for (var i = 13; i < 19; i++)
-          HabitDate(
-            date: ('2020-10-' + i.toString()),
-            isChecked: widget.data?.indexOf(i) != -1,
-            onChange: () => widget.toggleDate(i),
-          )
-      ],
+      children: dateList,
     );
   }
 }

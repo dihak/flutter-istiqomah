@@ -19,7 +19,7 @@ class Habit {
 class HabitModel extends ChangeNotifier {
   /// Internal, private state of the cart.
   final List<Habit> _items = [
-    Habit(id: 1, name: 'Sholat Shubuh di Masjid', data: [13, 14, 15, 17]),
+    Habit(id: 1, name: 'Sholat Shubuh di Masjid', data: []),
     Habit(id: 2, name: 'Sholat Dzuhur di Masjid', data: []),
   ];
 
