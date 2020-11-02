@@ -7,7 +7,14 @@ const TextStyle title = TextStyle(
 );
 
 class HabitItem extends StatefulWidget {
-  HabitItem({this.id, this.name, this.data, this.toggleDate, this.onTap});
+  HabitItem({
+    Key key,
+    this.id,
+    this.name,
+    this.data,
+    this.toggleDate,
+    this.onTap,
+  });
 
   final int id;
   final String name;

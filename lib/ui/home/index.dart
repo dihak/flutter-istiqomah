@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:istiqomah/models/habit.dart';
 import 'package:istiqomah/widgets/habits/habits.dart';
 import 'package:provider/provider.dart';
 
@@ -20,28 +19,7 @@ class _HomeState extends State<Home> {
             padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
             children: <Widget>[
               _header(context),
-              Consumer<HabitModel>(
-                builder: (context, data, child) => HabitList(children: [
-                  for (var item in data.habit)
-                    HabitItem(
-                        id: item.id,
-                        name: item.name,
-                        data: item.data,
-                        toggleDate: (date) {
-                          Feedback.forTap(context);
-                          item.toggelDate(date);
-                          data.update();
-                        },
-                        onTap: () {
-                          Feedback.forTap(context);
-                          Navigator.pushNamed(
-                            context,
-                            '/detail',
-                            arguments: item,
-                          );
-                        })
-                ]),
-              ),
+              HabitList(),
             ],
           ),
         ),
