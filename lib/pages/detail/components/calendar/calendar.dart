@@ -3,10 +3,20 @@ import 'package:istiqomah/constants/app.dart';
 import 'header.dart';
 import 'date-item.dart';
 
-class Calendar extends StatelessWidget {
-  final DateTime date;
+class Calendar extends StatefulWidget {
+  final List<String> data;
+  final Function(String) onToggleDate;
 
-  Calendar({this.date});
+  Calendar({this.data, this.onToggleDate});
+
+  @override
+  _CalendarState createState() => _CalendarState();
+}
+
+class _CalendarState extends State<Calendar> {
+  DateTime date;
+
+  _CalendarState() : this.date = new DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +33,18 @@ class Calendar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CalendarHeader(
-              monthShortName[date.month - 1] + " " + date.year.toString()),
+            monthShortName[date.month - 1] + " " + date.year.toString(),
+            onPrev: () {
+              setState(() {
+                date = new DateTime(date.year, date.month - 1, 1);
+              });
+            },
+            onNext: () {
+              setState(() {
+                date = new DateTime(date.year, date.month + 1, 1);
+              });
+            },
+          ),
           SizedBox(height: 10),
           Column(
             children: [

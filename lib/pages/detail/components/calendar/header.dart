@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CalendarHeader extends StatelessWidget {
-  CalendarHeader(this.text);
+  CalendarHeader(this.text, {this.onPrev, this.onNext});
 
   final String text;
+  final Function onPrev;
+  final Function onNext;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class CalendarHeader extends StatelessWidget {
               Icons.arrow_back,
               color: Colors.white,
             ),
-            onPressed: null,
+            onPressed: onPrev,
           ),
           Expanded(
             child: Text(
@@ -34,7 +36,7 @@ class CalendarHeader extends StatelessWidget {
               Icons.arrow_forward,
               color: Colors.white,
             ),
-            onPressed: null,
+            onPressed: onNext,
           ),
         ],
       ),

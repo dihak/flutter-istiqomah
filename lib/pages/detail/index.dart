@@ -26,7 +26,10 @@ class _DetailState extends State<Detail> {
                 height: 30,
               ),
               Calendar(
-                date: new DateTime.now(),
+                data: habit.data,
+                onToggleDate: (date) {
+                  print(date);
+                },
               ),
             ],
           ),
