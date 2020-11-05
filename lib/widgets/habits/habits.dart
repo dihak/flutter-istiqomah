@@ -22,9 +22,9 @@ class _HabitListState extends State<HabitList> {
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         physics: ScrollPhysics(),
-        itemCount: data.habit.length,
+        itemCount: data.habits.length,
         itemBuilder: (BuildContext _, int index) {
-          final item = data.habit[index];
+          final item = data.habits[index];
           return HabitItem(
             key: Key(item.id.toString()),
             id: item.id,
@@ -32,8 +32,7 @@ class _HabitListState extends State<HabitList> {
             data: item.data,
             toggleDate: (date) {
               Feedback.forTap(context);
-              item.toggelDate(date);
-              data.update();
+              data.toggleDate(item, date);
             },
             onTap: () {
               Feedback.forTap(context);

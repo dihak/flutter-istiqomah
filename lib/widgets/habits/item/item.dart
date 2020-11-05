@@ -19,7 +19,7 @@ class HabitItem extends StatefulWidget {
   final int id;
   final String name;
   final List data;
-  final Function toggleDate;
+  final Function(DateTime) toggleDate;
   final Function onTap;
 
   _HabitItemState createState() => _HabitItemState();
@@ -65,13 +65,13 @@ class _HabitItemState extends State<HabitItem> {
     final DateTime currentDate = new DateTime.now();
 
     for (var i = 5; i >= 0; i--) {
-      var date = currentDate.subtract(Duration(days: i));
-      var dateString = date.toString().substring(0, 10);
+      DateTime date = currentDate.subtract(Duration(days: i));
+      String dateString = date.toString().substring(0, 10);
       dateList.add(
         HabitDate(
-          date: dateString,
-          isChecked: widget.data?.indexOf(i) != -1,
-          onChange: () => widget.toggleDate(i),
+          date: date,
+          isChecked: widget.data?.indexOf(dateString) != -1,
+          onChange: () => widget.toggleDate(date),
         ),
       );
     }
