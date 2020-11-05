@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habit.dart';
+import 'package:provider/provider.dart';
 import '_header.dart';
 import 'components/calendar/calendar.dart';
 
@@ -11,7 +12,7 @@ class Detail extends StatefulWidget {
 class _DetailState extends State<Detail> {
   @override
   Widget build(BuildContext context) {
-    final Habit habit = ModalRoute.of(context).settings.arguments;
+    Habit habit = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -26,9 +27,12 @@ class _DetailState extends State<Detail> {
                 height: 30,
               ),
               Calendar(
-                data: habit.data,
+                habit: habit,
                 onToggleDate: (date) {
-                  print(date);
+                  Feedback.forTap(context);
+                  setState(() {
+                    Provider.of<HabitModel>(context).toggleDate(habit, date);
+                  });
                 },
               ),
             ],

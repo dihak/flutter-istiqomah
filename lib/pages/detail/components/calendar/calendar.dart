@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/constants/app.dart';
+import 'package:istiqomah/models/habit.dart';
 import 'header.dart';
 import 'date-item.dart';
 
 class Calendar extends StatefulWidget {
-  final List<String> data;
-  final Function(String) onToggleDate;
+  final Habit habit;
+  final Function(DateTime) onToggleDate;
 
-  Calendar({this.data, this.onToggleDate});
+  Calendar({this.habit, this.onToggleDate});
 
   @override
   _CalendarState createState() => _CalendarState();
@@ -102,7 +103,10 @@ class _CalendarState extends State<Calendar> {
       var dateWidget = DateItem(
         date: current,
         isSecondary: date.month != current.month,
-        active: widget.data.indexOf(current.toString().substring(0, 10)) != -1,
+        active:
+            widget.habit.data.indexOf(current.toString().substring(0, 10)) !=
+                -1,
+        onPressed: widget.onToggleDate,
       );
       columnLists[column].children.add(dateWidget);
 
