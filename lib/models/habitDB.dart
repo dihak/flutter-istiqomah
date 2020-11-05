@@ -100,7 +100,7 @@ class HabitDbProvider {
     }
   }
 
-  update(Habit habit) async {
+  Future<int> update(Habit habit) async {
     final db = await database;
     var result = await db
         .update("Habit", habit.toMap(), where: "id = ?", whereArgs: [habit.id]);

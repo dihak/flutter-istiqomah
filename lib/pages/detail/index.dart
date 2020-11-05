@@ -22,7 +22,12 @@ class _DetailState extends State<Detail> {
           child: ListView(
             padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
             children: <Widget>[
-              Header(habit.name),
+              Header(habit.name, onChange: (name) {
+                setState(() {
+                  habit.name = name;
+                  Provider.of<HabitModel>(context, listen: false).update(habit);
+                });
+              }),
               SizedBox(
                 height: 30,
               ),

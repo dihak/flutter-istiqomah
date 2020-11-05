@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:istiqomah/pages/detail/modal/edit.dart';
 
 class Header extends StatelessWidget {
-  Header(this.title);
+  Header(this.title, {this.onChange});
 
   final String title;
+  final Function(String) onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,20 @@ class Header extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
+        ),
+        IconButton(
+          padding: EdgeInsets.all(0),
+          constraints: BoxConstraints(),
+          color: Colors.white,
+          icon: Icon(Icons.edit),
+          onPressed: () {
+            modalEditHabit(context, title).then(
+              (value) => {
+                if (value != null && value != '' && onChange != null)
+                  onChange(value)
+              },
+            );
+          },
         ),
       ],
     );

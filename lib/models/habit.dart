@@ -67,8 +67,8 @@ class HabitModel extends ChangeNotifier {
   }
 
   /// Removes all items from the habit
-  void update() {
-    notifyListeners();
+  void update(Habit habit) {
+    db.update(habit).then((value) => notifyListeners());
   }
 
   /// Toggle date on index
