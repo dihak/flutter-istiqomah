@@ -4,7 +4,7 @@ import 'package:istiqomah/constants/app_theme.dart';
 class DateItem extends StatelessWidget {
   DateItem({this.date, this.active = false, this.isSecondary = false});
 
-  final int date;
+  final DateTime date;
   final bool active;
   final bool isSecondary;
   final BoxDecoration activeStyle = BoxDecoration(
@@ -29,7 +29,7 @@ class DateItem extends StatelessWidget {
           decoration: active ? activeStyle : inActiveStyle,
           padding: EdgeInsets.all(10),
           child: Text(
-            date.toString(),
+            date.day.toString(),
             textAlign: TextAlign.center,
           ),
         ),

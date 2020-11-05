@@ -99,8 +99,12 @@ class _CalendarState extends State<Calendar> {
       }
 
       // Add dateItem Widget
-      columnLists[column].children.add(DateItem(
-          date: current.day, isSecondary: date.month != current.month));
+      var dateWidget = DateItem(
+        date: current,
+        isSecondary: date.month != current.month,
+        active: widget.data.indexOf(current.toString().substring(0, 10)) != -1,
+      );
+      columnLists[column].children.add(dateWidget);
 
       // Increase current
       current = current.add(Duration(days: 1));
