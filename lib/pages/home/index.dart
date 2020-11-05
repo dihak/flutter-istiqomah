@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:istiqomah/widgets/habits/habits.dart';
+import 'package:istiqomah/models/habit.dart';
+import 'package:istiqomah/pages/home/components/habit_list.dart';
 import 'package:provider/provider.dart';
+import 'modal/add.dart';
 
 class Home extends StatefulWidget {
   @override

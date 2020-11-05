@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:istiqomah/widgets/habits/item/date.dart';
+import 'date.dart';
 
 const TextStyle title = TextStyle(
   fontSize: 24,

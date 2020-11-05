@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:istiqomah/ui/detail/index.dart';
-import 'package:istiqomah/ui/get_started/index.dart';
-import 'package:istiqomah/ui/home/index.dart';
+import 'package:istiqomah/pages/detail/index.dart';
+import 'package:istiqomah/pages/get_started/index.dart';
+import 'package:istiqomah/pages/home/index.dart';
 
 class Routes {
   Routes._();

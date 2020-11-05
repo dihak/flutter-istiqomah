@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habit.dart';
-import 'package:istiqomah/widgets/habits/item/item.dart';
 import 'package:provider/provider.dart';
-
-export 'package:istiqomah/models/habit.dart';
-export 'package:istiqomah/widgets/habits/item/item.dart';
-export 'package:istiqomah/widgets/habits/modal/add.dart';
+import 'item/item.dart';
 
 class HabitList extends StatefulWidget {
   HabitList({Key key}) : super(key: key);

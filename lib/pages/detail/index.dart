@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habit.dart';
-import 'package:istiqomah/ui/detail/_header.dart';
-import 'package:istiqomah/widgets/habits/calendar/calendar.dart';
+import '_header.dart';
+import 'components/calendar/calendar.dart';
 
 class Detail extends StatefulWidget {
   @override
