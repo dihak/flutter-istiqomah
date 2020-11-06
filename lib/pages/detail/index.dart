@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habit.dart';
+import 'package:istiqomah/pages/detail/modal/delete.dart';
 import 'package:provider/provider.dart';
 import '_header.dart';
 import 'components/calendar/calendar.dart';
@@ -40,6 +41,27 @@ class _DetailState extends State<Detail> {
                   });
                 },
               ),
+              FlatButton.icon(
+                onPressed: () {
+                  modalDeleteHabit(context, habit.name).then((value) {
+                    if (value) {
+                      Navigator.pop(context);
+                      setState(() {
+                        Provider.of<HabitModel>(context).remove(habit);
+                      });
+                    }
+                  });
+                },
+                padding: EdgeInsets.all(10),
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                ),
+                label: Text(
+                  'Hapus',
+                  style: TextStyle(color: Colors.red, fontSize: 20),
+                ),
+              )
             ],
           ),
         ),

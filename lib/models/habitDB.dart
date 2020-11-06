@@ -43,6 +43,9 @@ class HabitDbProvider {
           ")",
         );
       },
+      onConfigure: (Database db) async {
+        await db.execute('PRAGMA foreign_keys = ON');
+      },
     );
   }
 

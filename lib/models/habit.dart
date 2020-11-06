@@ -79,9 +79,11 @@ class HabitModel extends ChangeNotifier {
     });
   }
 
-  /// Removes habit by index
-  void removeHabit(int index) {
-    _habits.removeAt(index);
-    notifyListeners();
+  /// Removes habit
+  void remove(Habit habit) {
+    db.delete(habit).then((value) {
+      _habits.remove(habit);
+      notifyListeners();
+    });
   }
 }
