@@ -17,11 +17,11 @@ class _HomeState extends State<Home> {
       backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
         child: Container(
-          child: ListView(
-            padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+          padding: EdgeInsets.only(top: 50, right: 40, left: 40),
+          child: Column(
             children: <Widget>[
               _header(context),
-              HabitList(),
+              Expanded(child: HabitList()),
             ],
           ),
         ),

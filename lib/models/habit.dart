@@ -86,4 +86,16 @@ class HabitModel extends ChangeNotifier {
       notifyListeners();
     });
   }
+
+  /// Save order state
+  void reorderHabit(int oldIndex, int newIndex) {
+    if (oldIndex < newIndex) {
+      newIndex -= 1;
+    }
+    final Habit element = _habits.removeAt(oldIndex);
+    _habits.insert(newIndex, element);
+    final List habitIndex = _habits.map((e) => e.id).toList();
+    db.saveOrderState(habitIndex);
+    notifyListeners();
+  }
 }

@@ -42,6 +42,12 @@ class HabitDbProvider {
           " ON DELETE CASCADE"
           ")",
         );
+        await db.execute(
+          "CREATE TABLE Option ("
+          "name text PRIMARY KEY,"
+          "value text"
+          ")",
+        );
       },
       onConfigure: (Database db) async {
         await db.execute('PRAGMA foreign_keys = ON');
@@ -66,6 +72,19 @@ class HabitDbProvider {
       habit.data = data;
       habits.add(habit);
     });
+
+    // Sort order
+    Map<String, dynamic> orderState = await getOrderState();
+    if (orderState['value'] != '') {
+      List<String> orderList = orderState['value'].split(',');
+      habits.sort((a, b) {
+        var indexA = orderList.indexOf(a.id.toString());
+        var indexB = orderList.indexOf(b.id.toString());
+        if (indexA == -1) indexA = orderList.length;
+        if (indexB == -1) indexB = orderList.length;
+        return indexA.compareTo(indexB);
+      });
+    }
 
     return habits;
   }
@@ -113,5 +132,28 @@ class HabitDbProvider {
   delete(Habit habit) async {
     final db = await database;
     db.delete("Habit", where: "id = ?", whereArgs: [habit.id]);
+  }
+
+  Future<Map<String, dynamic>> getOrderState() async {
+    final db = await database;
+    var result = await db.query('Option', where: "name = 'habit_order'");
+    if (result.length == 0) {
+      var data = {
+        'name': 'habit_order',
+        'value': '',
+      };
+      await db.insert('Option', data);
+      return data;
+    } else {
+      return result.first;
+    }
+  }
+
+  saveOrderState(List<int> indexList) async {
+    final db = await database;
+    var result = await db.update(
+        'Option', {'name': 'habit_order', 'value': indexList.join(',')},
+        where: "name = 'habit_order'");
+    return result;
   }
 }

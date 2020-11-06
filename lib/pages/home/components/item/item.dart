@@ -8,7 +8,7 @@ const TextStyle title = TextStyle(
 
 class HabitItem extends StatefulWidget {
   HabitItem({
-    Key key,
+    this.key,
     this.id,
     this.name,
     this.data,
@@ -16,6 +16,7 @@ class HabitItem extends StatefulWidget {
     this.onTap,
   });
 
+  final Key key;
   final int id;
   final String name;
   final List data;
@@ -30,23 +31,25 @@ class _HabitItemState extends State<HabitItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
-      child: Container(
-        padding: EdgeInsets.all(20),
-        margin: EdgeInsets.only(bottom: 20),
-        decoration: BoxDecoration(
-          color: Color(0xff559DFF),
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
+      child: Wrap(children: [
+        Container(
+          padding: EdgeInsets.all(20),
+          margin: EdgeInsets.only(bottom: 20),
+          decoration: BoxDecoration(
+            color: Color(0xff559DFF),
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _header(),
-            _checklist(),
-          ],
-        ),
-      ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _header(),
+              _checklist(),
+            ],
+          ),
+        )
+      ]),
     );
   }
 
