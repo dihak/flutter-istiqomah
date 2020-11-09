@@ -59,7 +59,7 @@ class _DetailState extends State<Detail> {
 
   Widget _chart(BuildContext context, Habit habit) {
     return Container(
-      child: MonthlyChart(),
+      child: MonthlyChart(habit),
       height: 400,
     );
   }

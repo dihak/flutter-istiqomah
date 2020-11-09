@@ -1,8 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:istiqomah/constants/app.dart';
 import 'package:istiqomah/constants/app_theme.dart';
+import 'package:istiqomah/models/habit.dart';
 
 class MonthlyChart extends StatelessWidget {
+  final Habit habit;
+
+  MonthlyChart(this.habit);
+
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -20,7 +26,7 @@ class MonthlyChart extends StatelessWidget {
           _header(),
           SizedBox(height: 20),
           Expanded(
-            child: _chart(),
+            child: BarChartMonthly(habit),
           ),
         ],
       ),
@@ -34,18 +40,18 @@ class MonthlyChart extends StatelessWidget {
       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
     );
   }
-
-  Widget _chart() {
-    return BarChartSample1();
-  }
 }
 
-class BarChartSample1 extends StatefulWidget {
+class BarChartMonthly extends StatefulWidget {
+  final Habit habit;
+
+  BarChartMonthly(this.habit);
+
   @override
-  State<StatefulWidget> createState() => BarChartSample1State();
+  State<StatefulWidget> createState() => BarChartMonthlyState();
 }
 
-class BarChartSample1State extends State<BarChartSample1> {
+class BarChartMonthlyState extends State<BarChartMonthly> {
   final Color barBackgroundColor = themeData.primaryColor;
   final Duration animDuration = const Duration(milliseconds: 250);
 
@@ -93,26 +99,21 @@ class BarChartSample1State extends State<BarChartSample1> {
     );
   }
 
-  List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
-        switch (i) {
-          case 0:
-            return makeGroupData(0, 0, isTouched: i == touchedIndex);
-          case 1:
-            return makeGroupData(1, 0, isTouched: i == touchedIndex);
-          case 2:
-            return makeGroupData(2, 0, isTouched: i == touchedIndex);
-          case 3:
-            return makeGroupData(3, 0, isTouched: i == touchedIndex);
-          case 4:
-            return makeGroupData(4, 0, isTouched: i == touchedIndex);
-          case 5:
-            return makeGroupData(5, 0, isTouched: i == touchedIndex);
-          case 6:
-            return makeGroupData(6, 15, isTouched: i == touchedIndex);
-          default:
-            return null;
-        }
-      });
+  List<BarChartGroupData> showingGroups() {
+    DateTime currentDate = new DateTime.now();
+    int month = currentDate.month - 7;
+    int year = currentDate.year;
+    return List.generate(7, (i) {
+      DateTime date = new DateTime(year, ++month);
+      final double total = widget.habit.data
+          .where(
+            (element) => element.indexOf('${date.year}-${date.month}') != -1,
+          )
+          .length
+          .toDouble();
+      return makeGroupData(date.month - 1, total, isTouched: i == touchedIndex);
+    });
+  }
 
   BarChartData mainBarData() {
     return BarChartData(
@@ -137,24 +138,7 @@ class BarChartSample1State extends State<BarChartSample1> {
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
           margin: 16,
           getTitles: (double value) {
-            switch (value.toInt()) {
-              case 0:
-                return 'Jan';
-              case 1:
-                return 'Feb';
-              case 2:
-                return 'Mar';
-              case 3:
-                return 'Apr';
-              case 4:
-                return 'May';
-              case 5:
-                return 'Jun';
-              case 6:
-                return 'Jul';
-              default:
-                return '';
-            }
+            return monthShortName[value.toInt()];
           },
         ),
         leftTitles: SideTitles(
@@ -166,14 +150,5 @@ class BarChartSample1State extends State<BarChartSample1> {
       ),
       barGroups: showingGroups(),
     );
-  }
-
-  Future<dynamic> refreshState() async {
-    setState(() {});
-    await Future<dynamic>.delayed(
-        animDuration + const Duration(milliseconds: 50));
-    if (isPlaying) {
-      refreshState();
-    }
   }
 }
