@@ -56,9 +56,22 @@ class _HabitItemState extends State<HabitItem> {
   Widget _header() {
     return Padding(
       padding: EdgeInsets.only(bottom: 15),
-      child: Text(
-        widget.name,
-        style: title,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.alarm),
+              SizedBox(width: 5),
+              Text('12:00 AM'),
+            ],
+          ),
+          SizedBox(height: 10),
+          Text(
+            widget.name,
+            style: title,
+          )
+        ],
       ),
     );
   }

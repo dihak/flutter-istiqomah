@@ -25,7 +25,9 @@ class _DetailState extends State<Detail> {
             padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
             children: <Widget>[
               _header(context, habit),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
+              _alarm(),
+              SizedBox(height: 15),
               _calendar(context, habit),
               _chart(context, habit),
               _deleteButton(context, habit)
@@ -43,6 +45,21 @@ class _DetailState extends State<Detail> {
         Provider.of<HabitModel>(context, listen: false).update(habit);
       });
     });
+  }
+
+  Widget _alarm() {
+    return Row(
+      children: [
+        SizedBox(width: 40),
+        Icon(Icons.replay),
+        SizedBox(width: 5),
+        Text('Setiap hari'),
+        SizedBox(width: 10),
+        Icon(Icons.alarm),
+        SizedBox(width: 5),
+        Text('12:00 AM'),
+      ],
+    );
   }
 
   Widget _calendar(BuildContext context, Habit habit) {
