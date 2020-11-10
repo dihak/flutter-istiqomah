@@ -74,21 +74,22 @@ class _CalendarState extends State<Calendar> {
   }
 
   Widget _dateGrid() {
+    DateTime now = DateTime.now();
     // Get first date of calendar
-    var firstDate = DateTime.utc(date.year, date.month, 1);
-    var firstWeekInCalendar = DateTime.monday - firstDate.weekday;
+    DateTime firstDate = DateTime.utc(date.year, date.month, 1);
+    int firstWeekInCalendar = DateTime.monday - firstDate.weekday;
     firstDate = firstDate.add(Duration(days: firstWeekInCalendar));
 
     // Get last date of calendar
-    var lastDate = DateTime.utc(date.year, date.month + 1, 0);
-    var lastWeekInCalendar = DateTime.sunday - lastDate.weekday;
+    DateTime lastDate = DateTime.utc(date.year, date.month + 1, 0);
+    int lastWeekInCalendar = DateTime.sunday - lastDate.weekday;
     lastDate = lastDate.add(Duration(days: lastWeekInCalendar));
 
     // Generate widget
     List<Row> columnLists = [];
-    var current = firstDate;
-    var row = 0;
-    var column = -1;
+    DateTime current = firstDate;
+    int row = 0;
+    int column = -1;
     while (current.compareTo(lastDate) <= 0) {
       if (row % 7 == 0) {
         // Create row
@@ -107,6 +108,7 @@ class _CalendarState extends State<Calendar> {
             widget.habit.data.indexOf(current.toString().substring(0, 10)) !=
                 -1,
         onPressed: widget.onToggleDate,
+        isDisabled: now.compareTo(current) < 0,
       );
       columnLists[column].children.add(dateWidget);
 

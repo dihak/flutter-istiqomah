@@ -7,11 +7,13 @@ class DateItem extends StatelessWidget {
     this.active = false,
     this.isSecondary = false,
     this.onPressed,
+    this.isDisabled = false,
   });
 
   final DateTime date;
   final bool active;
   final bool isSecondary;
+  final bool isDisabled;
   final Function(DateTime) onPressed;
 
   final BoxDecoration activeStyle = BoxDecoration(
@@ -40,10 +42,10 @@ class DateItem extends StatelessWidget {
     }
 
     return Opacity(
-      opacity: isSecondary ? 0.7 : 1,
+      opacity: (isSecondary || isDisabled) ? 0.5 : 1,
       child: GestureDetector(
         onTap: () {
-          if (onPressed != null) {
+          if (onPressed != null && !isDisabled) {
             onPressed(date);
           }
         },
