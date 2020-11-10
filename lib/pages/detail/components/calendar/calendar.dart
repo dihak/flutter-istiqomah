@@ -107,7 +107,15 @@ class _CalendarState extends State<Calendar> {
         active:
             widget.habit.data.indexOf(current.toString().substring(0, 10)) !=
                 -1,
-        onPressed: widget.onToggleDate,
+        onPressed: (dateClick) {
+          if (date.month != dateClick.month) {
+            setState(() {
+              date = new DateTime(date.year, dateClick.month, 1);
+            });
+          } else {
+            widget.onToggleDate(dateClick);
+          }
+        },
         isDisabled: now.compareTo(current) < 0,
       );
       columnLists[column].children.add(dateWidget);
