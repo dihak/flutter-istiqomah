@@ -126,22 +126,15 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
 
   Widget _timePicker() {
     return Center(
-      child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white10,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        width: 200,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '12:00 AM',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-          ],
+      child: FlatButton(
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+        color: Colors.white10,
+        onPressed: () {
+          print('Time picker clicked');
+        },
+        child: Text(
+          "12:00 AM",
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ),
     );
