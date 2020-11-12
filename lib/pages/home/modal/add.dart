@@ -10,7 +10,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
   final inputController = TextEditingController();
 
   bool isReminderActive = false;
-
+  TimeOfDay selectedTime = TimeOfDay(hour: 07, minute: 00);
   List<String> activeDay = [];
 
   Widget build(BuildContext context) {
@@ -30,13 +30,13 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
           ),
         ),
         _inputName(),
-        _reminder(),
+        _reminder(context),
         _actionButton(context),
       ],
     );
   }
 
-  Widget _reminder() {
+  Widget _reminder(BuildContext context) {
     Widget toggleButton = GestureDetector(
       onTap: () {
         setState(() {
@@ -88,7 +88,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
     List<Widget> childrenList = [toggleButton];
 
     if (isReminderActive) {
-      childrenList.add(_timePicker());
+      childrenList.add(_timePicker(context));
       childrenList.add(SizedBox(height: 10));
       childrenList.add(dateList);
       childrenList.add(SizedBox(height: 20));
@@ -124,16 +124,30 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
         ));
   }
 
-  Widget _timePicker() {
+  String getTime(TimeOfDay time) {
+    final period = time.hour >= 12 ? 'PM' : 'AM';
+    final hour = selectedTime.hourOfPeriod.toString().padLeft(2, '0');
+    final minute = selectedTime.minute.toString().padLeft(2, '0');
+    return "$hour:$minute $period";
+  }
+
+  Widget _timePicker(BuildContext context) {
     return Center(
       child: FlatButton(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
         color: Colors.white10,
         onPressed: () {
-          print('Time picker clicked');
+          showTimePicker(context: context, initialTime: selectedTime).then(
+            (value) {
+              if (value == null) return;
+              setState(() {
+                selectedTime = value;
+              });
+            },
+          );
         },
         child: Text(
-          "12:00 AM",
+          getTime(selectedTime),
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ),
