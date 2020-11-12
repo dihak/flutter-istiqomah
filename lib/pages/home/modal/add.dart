@@ -126,7 +126,10 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
 
   String getTime(TimeOfDay time) {
     final period = time.hour >= 12 ? 'PM' : 'AM';
-    final hour = selectedTime.hourOfPeriod.toString().padLeft(2, '0');
+    final hour = selectedTime.hourOfPeriod
+        .toString()
+        .padLeft(2, '0')
+        .replaceAll('00', '12');
     final minute = selectedTime.minute.toString().padLeft(2, '0');
     return "$hour:$minute $period";
   }
