@@ -63,15 +63,42 @@ class NotificationModel {
         payload: 'item x');
   }
 
-  static scheduleNotification() async {
+  static scheduleNotification({
+    int id,
+    String title,
+    String body,
+    Time time,
+    List<int> weeklist,
+  }) async {
+    DateTime now = DateTime.now();
+    DateTime schedule = DateTime.utc(
+      now.year,
+      now.month,
+      now.day,
+      time.hour,
+      time.minute,
+    );
+    int firstWeek = weeklist != null ? weeklist[0] : 0;
+    schedule.add(new Duration(days: now.weekday - firstWeek));
+
+    DateTimeComponents repeat = DateTimeComponents.time;
+
+    if (weeklist.length != 7) {
+      repeat = DateTimeComponents.dayOfWeekAndTime;
+    }
+
+    print(repeat);
+
     await flutterLocalNotificationsPlugin.zonedSchedule(
-        0,
-        'scheduled title',
-        'scheduled body',
-        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
-        platformChannelSpecifics,
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime);
+      id,
+      title,
+      body,
+      schedule,
+      platformChannelSpecifics,
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: repeat,
+    );
   }
 }
