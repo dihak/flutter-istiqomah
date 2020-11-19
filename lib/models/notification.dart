@@ -26,7 +26,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 Future initializeNotification() async {
   const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('ic_launcher_foreground');
+      AndroidInitializationSettings('ic_stat');
 
   /// Note: permissions aren't requested here just to demonstrate that can be
   /// done later
