@@ -60,7 +60,7 @@ class _DetailState extends State<Detail> {
         SizedBox(width: 5),
         Icon(Icons.replay),
         SizedBox(width: 5),
-        Text(dayString.join(', ')),
+        Text(dayString.length == 7 ? 'Setiap hari' : dayString.join(', ')),
       ],
     );
   }

@@ -75,7 +75,9 @@ class _HabitItemState extends State<HabitItem> {
                 SizedBox(width: 5),
                 Icon(Icons.replay),
                 SizedBox(width: 5),
-                Text(dayString.join(', ')),
+                Text(dayString.length == 7
+                    ? 'Setiap hari'
+                    : dayString.join(', ')),
               ],
             ),
           if (widget.time != null) SizedBox(height: 10),
