@@ -83,17 +83,21 @@ class HabitDbProvider {
           .where((element) => element['habit_id'] == result['id'])
           .map<String>((e) => e['date'])
           .toList();
-      List<int> dataReminder = reminder
-          .firstWhere(
-            (element) => element['habit_id'] == result['id'],
-          )['weekday']
-          .split(',')
-          .map<int>((e) => int.parse(e))
-          .toList();
-
       Habit habit = Habit.fromMap(result);
       habit.data = data;
-      habit.daylist = dataReminder;
+
+      if (result['time'] != null) {
+        Map dataReminder = reminder.firstWhere(
+          (element) => element['habit_id'] == result['id'],
+        );
+        List<int> day = dataReminder['weekday']
+            .split(',')
+            .map<int>((e) => int.parse(e))
+            .toList();
+        habit.reminderID = dataReminder['id'];
+        habit.daylist = day;
+      }
+
       habits.add(habit);
     });
 
@@ -162,6 +166,22 @@ class HabitDbProvider {
     final db = await database;
     var result = await db
         .update("Habit", habit.toMap(), where: "id = ?", whereArgs: [habit.id]);
+    if (habit.time == null) {
+      await db.delete("HabitReminder",
+          where: "habit_id = ?", whereArgs: [habit.id]);
+      habit.reminderID = null;
+    } else if (habit.reminderID != null) {
+      await db.update("HabitReminder", {'weekday': habit.daylist.join(',')},
+          where: "id = ?", whereArgs: [habit.reminderID]);
+    } else {
+      habit.reminderID = await db.insert(
+        "HabitReminder",
+        {
+          'habit_id': habit.id,
+          'weekday': habit.daylist.join(','),
+        },
+      );
+    }
     return result;
   }
 

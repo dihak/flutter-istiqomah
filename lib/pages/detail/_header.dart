@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:istiqomah/models/habit.dart';
 import 'package:istiqomah/pages/detail/modal/edit.dart';
 
 class Header extends StatelessWidget {
-  Header(this.title, {this.onChange});
+  Header(this.habit, {this.onChange});
 
-  final String title;
-  final Function(String) onChange;
+  final Habit habit;
+  final Function(Habit) onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class Header extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            title,
+            habit.name,
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w700,
@@ -36,11 +37,8 @@ class Header extends StatelessWidget {
           color: Colors.white,
           icon: Icon(Icons.edit),
           onPressed: () {
-            modalEditHabit(context, title).then(
-              (value) => {
-                if (value != null && value != '' && onChange != null)
-                  onChange(value)
-              },
+            modalEditHabit(context, habit).then(
+              (value) => {onChange(habit)},
             );
           },
         ),

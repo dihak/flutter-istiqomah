@@ -59,8 +59,12 @@ class _HabitItemState extends State<HabitItem> {
   }
 
   Widget _header() {
-    List<String> dayString =
-        widget.dayList.map((e) => dayShortName[e - 1]).toList();
+    String day;
+    if (widget.time != null) {
+      List<String> dayString =
+          widget.dayList.map((e) => dayShortName[e - 1]).toList();
+      day = dayString.length == 7 ? 'Setiap hari' : dayString.join(', ');
+    }
     return Padding(
       padding: EdgeInsets.only(bottom: 15),
       child: Column(
@@ -75,9 +79,7 @@ class _HabitItemState extends State<HabitItem> {
                 SizedBox(width: 5),
                 Icon(Icons.replay),
                 SizedBox(width: 5),
-                Text(dayString.length == 7
-                    ? 'Setiap hari'
-                    : dayString.join(', ')),
+                Text(day),
               ],
             ),
           if (widget.time != null) SizedBox(height: 10),

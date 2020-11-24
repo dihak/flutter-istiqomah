@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habitDB.dart';
 
 class Habit {
-  Habit({this.id, @required this.name, this.time, this.daylist, data})
-      : this.data = data ?? [];
+  Habit({
+    this.id,
+    @required this.name,
+    this.time,
+    this.daylist,
+    this.reminderID,
+    data,
+  }) : this.data = data ?? [];
 
   int id;
   String name;
+  int reminderID;
   TimeOfDay time;
   List<int> daylist;
   List<String> data;
@@ -17,6 +24,11 @@ class Habit {
     };
     if (id != null) {
       map['id'] = id;
+    }
+    if (time != null) {
+      map['time'] = '${time.hour}:${time.minute}';
+    } else {
+      map['time'] = null;
     }
     return map;
   }

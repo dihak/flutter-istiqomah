@@ -27,7 +27,7 @@ class _DetailState extends State<Detail> {
             children: <Widget>[
               _header(context, habit),
               SizedBox(height: 20),
-              _alarm(habit),
+              if (habit.time != null) _alarm(habit),
               SizedBox(height: 15),
               _calendar(context, habit),
               _chart(context, habit),
@@ -40,11 +40,8 @@ class _DetailState extends State<Detail> {
   }
 
   Widget _header(BuildContext context, Habit habit) {
-    return Header(habit.name, onChange: (name) {
-      setState(() {
-        habit.name = name;
-        Provider.of<HabitModel>(context, listen: false).update(habit);
-      });
+    return Header(habit, onChange: (name) {
+      Provider.of<HabitModel>(context, listen: false).update(habit);
     });
   }
 
