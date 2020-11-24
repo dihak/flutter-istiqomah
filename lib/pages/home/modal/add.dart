@@ -11,7 +11,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
 
   bool isReminderActive = false;
   TimeOfDay selectedTime = TimeOfDay(hour: 07, minute: 00);
-  List<String> activeDay = [];
+  List<int> activeDay = [];
 
   Widget build(BuildContext context) {
     return Column(
@@ -71,13 +71,14 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
         for (var item in dayShortName)
           _dayItem(
             text: item,
-            active: activeDay.indexOf(item) != -1,
+            active: activeDay.indexOf(dayShortName.indexOf(item) + 1) != -1,
             onTap: (value) {
+              int week = dayShortName.indexOf(value) + 1;
               setState(() {
-                if (activeDay.indexOf(value) == -1) {
-                  activeDay.add(value);
+                if (activeDay.indexOf(week) == -1) {
+                  activeDay.add(week);
                 } else {
-                  activeDay.remove(value);
+                  activeDay.remove(week);
                 }
               });
             },
@@ -221,7 +222,12 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
               splashColor: Colors.blue[50],
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               onPressed: () {
-                Navigator.pop(context, inputController.text);
+                Navigator.pop(context, {
+                  'name': inputController.text,
+                  'isReminderActive': isReminderActive,
+                  'time': selectedTime,
+                  'daylist': activeDay
+                });
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -238,7 +244,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
   }
 }
 
-Future<String> modalAddHabit(BuildContext context) async {
+Future<Map> modalAddHabit(BuildContext context) async {
   return showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(

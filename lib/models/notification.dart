@@ -68,7 +68,7 @@ class NotificationModel {
     String title,
     String body,
     Time time,
-    List<int> weeklist,
+    List<int> daylist,
   }) async {
     DateTime now = DateTime.now();
     DateTime schedule = DateTime.utc(
@@ -78,12 +78,12 @@ class NotificationModel {
       time.hour,
       time.minute,
     );
-    int firstWeek = weeklist != null ? weeklist[0] : 0;
+    int firstWeek = daylist != null ? daylist[0] : 0;
     schedule.add(new Duration(days: now.weekday - firstWeek));
 
     DateTimeComponents repeat = DateTimeComponents.time;
 
-    if (weeklist.length != 7) {
+    if (daylist.length != 7) {
       repeat = DateTimeComponents.dayOfWeekAndTime;
     }
 

@@ -22,6 +22,8 @@ class _HabitListState extends State<HabitList> {
             key: ValueKey(item.id.toString()),
             id: item.id,
             name: item.name,
+            time: item.time,
+            dayList: item.daylist,
             data: item.data,
             toggleDate: (date) {
               Feedback.forTap(context);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istiqomah/constants/app.dart';
 import 'package:istiqomah/models/habit.dart';
 import 'package:istiqomah/pages/detail/components/chart/monthly_chart.dart';
 import 'package:istiqomah/pages/detail/modal/delete.dart';
@@ -26,7 +27,7 @@ class _DetailState extends State<Detail> {
             children: <Widget>[
               _header(context, habit),
               SizedBox(height: 20),
-              _alarm(),
+              _alarm(habit),
               SizedBox(height: 15),
               _calendar(context, habit),
               _chart(context, habit),
@@ -47,17 +48,19 @@ class _DetailState extends State<Detail> {
     });
   }
 
-  Widget _alarm() {
+  Widget _alarm(Habit habit) {
+    List<String> dayString =
+        habit.daylist.map((e) => dayShortName[e - 1]).toList();
+
     return Row(
       children: [
-        SizedBox(width: 40),
-        Icon(Icons.replay),
-        SizedBox(width: 5),
-        Text('Setiap hari'),
-        SizedBox(width: 10),
         Icon(Icons.alarm),
         SizedBox(width: 5),
-        Text('12:00 AM'),
+        Text(habit.time.format(context)),
+        SizedBox(width: 5),
+        Icon(Icons.replay),
+        SizedBox(width: 5),
+        Text(dayString.join(', ')),
       ],
     );
   }

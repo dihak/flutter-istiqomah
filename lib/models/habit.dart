@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habitDB.dart';
 
 class Habit {
-  Habit({this.id, @required this.name, data}) : this.data = data ?? [];
+  Habit({this.id, @required this.name, this.time, this.daylist, data})
+      : this.data = data ?? [];
 
   int id;
   String name;
+  TimeOfDay time;
+  List<int> daylist;
   List<String> data;
 
   Map<String, dynamic> toMap() {
@@ -21,6 +24,12 @@ class Habit {
   Habit.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     name = map['name'];
+    if (map['time'] != null) {
+      int hour = int.parse(map['time'].toString().split(':')[0]);
+      int minute = int.parse(map['time'].toString().split(':')[1]);
+      time = TimeOfDay(hour: hour, minute: minute);
+    }
+    daylist = map['daylist'];
     data = map['data'];
   }
 
@@ -53,8 +62,8 @@ class HabitModel extends ChangeNotifier {
   List<Habit> get habits => _habits;
 
   /// Add habit
-  void add({@required name}) {
-    db.insert(name).then((value) {
+  void add({@required name, TimeOfDay time, List<int> daylist}) {
+    db.insert(name, time, daylist).then((value) {
       _habits.add(value);
       notifyListeners();
     });

@@ -50,10 +50,19 @@ class _HomeState extends State<Home> {
           constraints: BoxConstraints.expand(width: 50, height: 50),
           onPressed: () {
             modalAddHabit(context).then(
-              (value) => {
-                if (value != null && value != '')
+              (value) {
+                if (value == null) return;
+                String name = value['name'];
+                TimeOfDay time;
+                List daylist;
+                if (value['isReminderActive']) {
+                  time = value['time'];
+                  daylist = value['daylist'];
+                }
+                if (name != null && name != '') {
                   Provider.of<HabitModel>(context, listen: false)
-                      .add(name: value)
+                      .add(name: name, time: time, daylist: daylist);
+                }
               },
             );
           },

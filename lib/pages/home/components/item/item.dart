@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istiqomah/constants/app.dart';
 import 'date.dart';
 
 const TextStyle title = TextStyle(
@@ -11,6 +12,8 @@ class HabitItem extends StatefulWidget {
     this.key,
     this.id,
     this.name,
+    this.time,
+    this.dayList,
     this.data,
     this.toggleDate,
     this.onTap,
@@ -19,6 +22,8 @@ class HabitItem extends StatefulWidget {
   final Key key;
   final int id;
   final String name;
+  final TimeOfDay time;
+  final List<int> dayList;
   final List data;
   final Function(DateTime) toggleDate;
   final Function onTap;
@@ -54,19 +59,26 @@ class _HabitItemState extends State<HabitItem> {
   }
 
   Widget _header() {
+    List<String> dayString =
+        widget.dayList.map((e) => dayShortName[e - 1]).toList();
     return Padding(
       padding: EdgeInsets.only(bottom: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Icon(Icons.alarm),
-              SizedBox(width: 5),
-              Text('12:00 AM'),
-            ],
-          ),
-          SizedBox(height: 10),
+          if (widget.time != null)
+            Row(
+              children: [
+                Icon(Icons.alarm),
+                SizedBox(width: 5),
+                Text(widget.time.format(context)),
+                SizedBox(width: 5),
+                Icon(Icons.replay),
+                SizedBox(width: 5),
+                Text(dayString.join(', ')),
+              ],
+            ),
+          if (widget.time != null) SizedBox(height: 10),
           Text(
             widget.name,
             style: title,

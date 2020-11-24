@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -29,7 +30,18 @@ class HabitDbProvider {
         await db.execute(
           "CREATE TABLE Habit ("
           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-          "name TEXT"
+          "name TEXT,"
+          "time TEXT"
+          ")",
+        );
+        await db.execute(
+          "CREATE TABLE HabitReminder ("
+          "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+          "habit_id INTEGER,"
+          "weekday TEXT,"
+          "FOREIGN KEY (habit_id)"
+          " REFERENCES Habit (id)"
+          " ON DELETE CASCADE"
           ")",
         );
         await db.execute(
@@ -57,19 +69,31 @@ class HabitDbProvider {
 
   Future<List<Habit>> getAllHabits() async {
     final db = await database;
-    List<Map> results =
-        await db.query("Habit", columns: ['id', 'name'], orderBy: "id ASC");
+    List<Map> results = await db.query("Habit",
+        columns: ['id', 'name', 'time'], orderBy: "id ASC");
     List<Map> detail = await db.query("HabitDetail",
         columns: ['id', 'habit_id', 'date'], orderBy: "id ASC");
+    List<Map> reminder = await db.query("HabitReminder",
+        columns: ['id', 'habit_id', 'weekday'], orderBy: "id ASC");
     List<Habit> habits = new List();
+    print(results);
 
     results.forEach((result) {
       List<String> data = detail
           .where((element) => element['habit_id'] == result['id'])
           .map<String>((e) => e['date'])
           .toList();
+      List<int> dataReminder = reminder
+          .firstWhere(
+            (element) => element['habit_id'] == result['id'],
+          )['weekday']
+          .split(',')
+          .map<int>((e) => int.parse(e))
+          .toList();
+
       Habit habit = Habit.fromMap(result);
       habit.data = data;
+      habit.daylist = dataReminder;
       habits.add(habit);
     });
 
@@ -95,11 +119,23 @@ class HabitDbProvider {
     return result.isNotEmpty ? Habit.fromMap(result.first) : Null;
   }
 
-  Future<Habit> insert(String name) async {
+  Future<Habit> insert(String name, TimeOfDay time, List<int> daylist) async {
     final db = await database;
-    var id = await db.insert('Habit', {'name': name});
-    var habit = Habit(id: id, name: name);
-    print('Add new habit ' + name);
+
+    // Insert to db
+    var id = await db.insert('Habit', {
+      'name': name,
+      'time': time != null ? '${time.hour}:${time.minute}' : null
+    });
+    if (daylist != null) {
+      await db.insert('HabitReminder', {
+        'habit_id': id,
+        'weekday': daylist.join(','),
+      });
+    }
+
+    // Return habit
+    Habit habit = Habit(id: id, name: name, time: time, daylist: daylist);
     return habit;
   }
 
