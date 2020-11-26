@@ -11,7 +11,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
 
   bool isReminderActive = false;
   TimeOfDay selectedTime = TimeOfDay(hour: 07, minute: 00);
-  List<int> activeDay = [];
+  List<int> activeDay = [1, 2, 3, 4, 5, 6, 7];
 
   Widget build(BuildContext context) {
     return Column(

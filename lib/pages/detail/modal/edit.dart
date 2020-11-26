@@ -16,7 +16,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
 
   bool isReminderActive = false;
   TimeOfDay selectedTime = TimeOfDay(hour: 07, minute: 00);
-  List<int> activeDay = [];
+  List<int> activeDay = [1, 2, 3, 4, 5, 6, 7];
 
   _ModalEditHabitState(Habit habit) {
     inputController.text = habit.name;
