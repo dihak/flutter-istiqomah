@@ -68,6 +68,14 @@ class NotificationModel {
   }
 
   static rescheduleNotification(Habit habit) async {
+    int notifId = habit.id * 7;
+    // Cancel all schedule
+    for (var i = 0; i < 7; i++) {
+      await notif.cancel(notifId + i);
+    }
+
+    if (habit.time == null || habit.daylist.length == 0) return;
+
     DateTime now = DateTime.now();
     tz.TZDateTime schedule = tz.TZDateTime.local(
       now.year,
@@ -76,14 +84,6 @@ class NotificationModel {
       habit.time.hour,
       habit.time.minute,
     );
-
-    if (habit.time == null || habit.daylist.length == 0) return;
-
-    int notifId = habit.id * 7;
-    // Cancel all schedule
-    for (var i = 0; i < 7; i++) {
-      await notif.cancel(notifId + i);
-    }
 
     // Re-schedule
     for (var item in habit.daylist) {
