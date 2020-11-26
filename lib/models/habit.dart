@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habitDB.dart';
 
+import 'notification.dart';
+
 class Habit {
   Habit({
     this.id,
@@ -83,6 +85,7 @@ class HabitModel extends ChangeNotifier {
   void add({@required name, TimeOfDay time, List<int> daylist}) {
     db.insert(name, time, daylist).then((value) {
       _habits.add(value);
+      NotificationModel.rescheduleNotification(value);
       notifyListeners();
     });
   }
@@ -96,6 +99,7 @@ class HabitModel extends ChangeNotifier {
   /// Removes all items from the habit
   void update(Habit habit) {
     db.update(habit).then((value) => notifyListeners());
+    NotificationModel.rescheduleNotification(habit);
   }
 
   /// Toggle date on index

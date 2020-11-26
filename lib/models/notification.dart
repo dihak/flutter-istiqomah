@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:istiqomah/models/habit.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -40,7 +42,9 @@ Future initializeNotification() async {
     }
   });
 
+  final String currentTimeZone = await FlutterNativeTimezone.getLocalTimezone();
   tz.initializeTimeZones();
+  tz.setLocalLocation(tz.getLocation(currentTimeZone));
 }
 
 class NotificationModel {
@@ -63,42 +67,42 @@ class NotificationModel {
         payload: 'item x');
   }
 
-  static scheduleNotification({
-    int id,
-    String title,
-    String body,
-    Time time,
-    List<int> daylist,
-  }) async {
+  static rescheduleNotification(Habit habit) async {
     DateTime now = DateTime.now();
-    DateTime schedule = DateTime.utc(
+    tz.TZDateTime schedule = tz.TZDateTime.local(
       now.year,
       now.month,
       now.day,
-      time.hour,
-      time.minute,
+      habit.time.hour,
+      habit.time.minute,
     );
-    int firstWeek = daylist != null ? daylist[0] : 0;
-    schedule.add(new Duration(days: now.weekday - firstWeek));
 
-    DateTimeComponents repeat = DateTimeComponents.time;
+    if (habit.time == null || habit.daylist.length == 0) return;
 
-    if (daylist.length != 7) {
-      repeat = DateTimeComponents.dayOfWeekAndTime;
+    int notifId = habit.id * 7;
+    // Cancel all schedule
+    for (var i = 0; i < 7; i++) {
+      await notif.cancel(notifId + i);
     }
 
-    print(repeat);
-
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-      id,
-      title,
-      body,
-      schedule,
-      platformChannelSpecifics,
-      androidAllowWhileIdle: true,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: repeat,
-    );
+    // Re-schedule
+    for (var item in habit.daylist) {
+      tz.TZDateTime newSchedule =
+          schedule.add(new Duration(days: item - now.weekday));
+      if (newSchedule.isBefore(DateTime.now())) {
+        newSchedule = newSchedule.add(new Duration(days: 7));
+      }
+      await notif.zonedSchedule(
+          notifId + (item - 1),
+          habit.name,
+          'Jangan lupa ${habit.name} hari ini!',
+          newSchedule,
+          platformChannelSpecifics,
+          androidAllowWhileIdle: true,
+          uiLocalNotificationDateInterpretation:
+              UILocalNotificationDateInterpretation.absoluteTime,
+          matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
+          payload: 'habit-${habit.id}');
+    }
   }
 }
