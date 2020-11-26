@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:istiqomah/constants/app_theme.dart';
 import 'package:istiqomah/models/habit.dart';
 import 'package:istiqomah/models/notification.dart';
+import 'package:istiqomah/pages/home/index.dart';
 import 'package:istiqomah/routes.dart';
 import 'package:istiqomah/pages/get_started/index.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +21,20 @@ Future<void> main() async {
   );
 }
 
-class IstiqomahApp extends StatelessWidget {
+class IstiqomahApp extends StatefulWidget {
+  @override
+  _IstiqomahAppState createState() => _IstiqomahAppState();
+}
+
+class _IstiqomahAppState extends State<IstiqomahApp> {
+  Widget _body;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadStarted();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,8 +43,16 @@ class IstiqomahApp extends StatelessWidget {
       theme: themeData,
       home: Scaffold(
         backgroundColor: Colors.blue,
-        body: GetStarted(),
+        body: _body,
       ),
     );
+  }
+
+  void _loadStarted() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isStarted = prefs.getBool('isStarted') == null;
+    setState(() {
+      _body = isStarted ? GetStarted() : Home();
+    });
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GetStarted extends StatelessWidget {
   @override
@@ -68,6 +69,10 @@ class GetStarted extends StatelessWidget {
       padding: EdgeInsets.all(20),
       splashColor: Colors.blue[50],
       onPressed: () {
+        Future<SharedPreferences> prefsFuture = SharedPreferences.getInstance();
+        prefsFuture.then((prefs) {
+          prefs.setBool('isStarted', true);
+        });
         Navigator.of(context).pushReplacementNamed(Routes.home);
       },
       child: Text(
