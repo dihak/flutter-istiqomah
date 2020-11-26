@@ -53,7 +53,8 @@ class _DetailState extends State<Detail> {
       children: [
         Icon(Icons.alarm),
         SizedBox(width: 5),
-        Text(habit.time.format(context)),
+        Text(MaterialLocalizations.of(context)
+            .formatTimeOfDay(habit.time, alwaysUse24HourFormat: false)),
         SizedBox(width: 5),
         Icon(Icons.replay),
         SizedBox(width: 5),
