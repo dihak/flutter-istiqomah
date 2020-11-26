@@ -116,6 +116,7 @@ class HabitModel extends ChangeNotifier {
       _habits.remove(habit);
       notifyListeners();
     });
+    NotificationModel.removeNotification(habit);
   }
 
   /// Save order state

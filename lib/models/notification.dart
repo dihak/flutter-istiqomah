@@ -62,13 +62,8 @@ class NotificationModel {
   static const NotificationDetails platformChannelSpecifics =
       NotificationDetails(android: androidPlatformChannelSpecifics);
 
-  static Future<void> showNotification(String title, String body) async {
-    await notif.show(0, title, body, platformChannelSpecifics,
-        payload: 'item x');
-  }
-
   static rescheduleNotification(Habit habit) async {
-    int notifId = habit.id * 7;
+    int notifId = (habit.id * 7) - 7;
     // Cancel all schedule
     for (var i = 0; i < 7; i++) {
       await notif.cancel(notifId + i);
@@ -103,6 +98,14 @@ class NotificationModel {
               UILocalNotificationDateInterpretation.absoluteTime,
           matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
           payload: 'habit-${habit.id}');
+    }
+  }
+
+  static removeNotification(Habit habit) async {
+    int notifId = (habit.id * 7) - 7;
+    // Cancel all schedule
+    for (var i = 0; i < 7; i++) {
+      await notif.cancel(notifId + i);
     }
   }
 }
