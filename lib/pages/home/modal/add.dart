@@ -225,7 +225,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
                 Navigator.pop(context, {
                   'name': inputController.text,
                   'isReminderActive': isReminderActive,
-                  'time': selectedTime,
+                  'time': activeDay.length != 0 ? selectedTime : null,
                   'daylist': activeDay
                 });
               },

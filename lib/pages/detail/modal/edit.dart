@@ -240,7 +240,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
               onPressed: () {
                 Habit habit = widget.habit;
                 habit.name = inputController.text;
-                if (isReminderActive) {
+                if (isReminderActive && activeDay.length != 0) {
                   habit.time = selectedTime;
                   habit.setDayList(activeDay);
                 } else {
