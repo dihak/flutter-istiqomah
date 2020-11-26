@@ -16,10 +16,8 @@ class HabitDate extends StatelessWidget {
       color: Theme.of(context).primaryColor,
       shape: BoxShape.circle,
     );
-    final BoxDecoration inActive = BoxDecoration(
-      shape: BoxShape.circle,
-      border: Border.all(color: Colors.white),
-    );
+    final BoxDecoration inActive =
+        BoxDecoration(color: Colors.white12, shape: BoxShape.circle);
 
     return GestureDetector(
       onTap: () => {if (onChange != null) onChange()},
