@@ -76,7 +76,6 @@ class HabitDbProvider {
     List<Map> reminder = await db.query("HabitReminder",
         columns: ['id', 'habit_id', 'weekday'], orderBy: "id ASC");
     List<Habit> habits = new List();
-    print(results);
 
     results.forEach((result) {
       List<String> data = detail
@@ -95,7 +94,7 @@ class HabitDbProvider {
             .map<int>((e) => int.parse(e))
             .toList();
         habit.reminderID = dataReminder['id'];
-        habit.daylist = day;
+        habit.setDayList(day);
       }
 
       habits.add(habit);
@@ -132,6 +131,7 @@ class HabitDbProvider {
       'time': time != null ? '${time.hour}:${time.minute}' : null
     });
     if (daylist != null) {
+      daylist.sort();
       await db.insert('HabitReminder', {
         'habit_id': id,
         'weekday': daylist.join(','),

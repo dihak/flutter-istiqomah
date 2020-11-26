@@ -56,6 +56,12 @@ class Habit {
       return false;
     }
   }
+
+  Habit setDayList(List<int> day) {
+    day.sort();
+    this.daylist = day;
+    return this;
+  }
 }
 
 class HabitModel extends ChangeNotifier {

@@ -242,7 +242,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
                 habit.name = inputController.text;
                 if (isReminderActive) {
                   habit.time = selectedTime;
-                  habit.daylist = activeDay;
+                  habit.setDayList(activeDay);
                 } else {
                   habit.time = null;
                   habit.daylist = null;
