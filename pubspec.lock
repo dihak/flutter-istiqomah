@@ -96,14 +96,14 @@ packages:
       name: flutter_local_notifications
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1+3"
+    version: "3.0.1+6"
   flutter_local_notifications_platform_interface:
     dependency: transitive
     description:
       name: flutter_local_notifications_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.0+1"
   flutter_native_timezone:
     dependency: "direct main"
     description:
