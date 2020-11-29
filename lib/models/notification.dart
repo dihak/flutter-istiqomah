@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:istiqomah/models/habit.dart';
@@ -20,13 +19,10 @@ class ReceivedNotification {
   final String payload;
 }
 
-const MethodChannel platform =
-    MethodChannel('dexterx.dev/flutter_local_notifications_example');
-
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-Future initializeNotification() async {
+Future initializeNotification(BuildContext context) async {
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('ic_stat');
 
@@ -38,7 +34,15 @@ Future initializeNotification() async {
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onSelectNotification: (String payload) async {
     if (payload != null) {
-      debugPrint('notification payload: $payload');
+      if (payload.startsWith('habit-')) {
+        int habitID = int.parse(payload.substring(6));
+        Habit habit = await habitAdapter.getById(habitID);
+        Navigator.pushNamed(
+          context,
+          '/detail',
+          arguments: habit,
+        );
+      }
     }
   });
 

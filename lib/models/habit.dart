@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habitDB.dart';
 
@@ -69,10 +71,11 @@ class Habit {
 class HabitModel extends ChangeNotifier {
   final List<Habit> _habits = [];
   final HabitDbProvider db;
+  Future dbGetAll;
 
   /// Load Habits
   HabitModel() : db = HabitDbProvider.db {
-    db.getAllHabits().then((value) {
+    dbGetAll = db.getAllHabits().then((value) {
       _habits.addAll(value);
       notifyListeners();
     });
@@ -80,6 +83,12 @@ class HabitModel extends ChangeNotifier {
 
   /// Get habit
   List<Habit> get habits => _habits;
+
+  /// Get habit by id
+  Future<Habit> getById(int id) async {
+    await dbGetAll;
+    return _habits.firstWhere((element) => element.id == id);
+  }
 
   /// Add habit
   void add({@required name, TimeOfDay time, List<int> daylist}) {
@@ -131,3 +140,5 @@ class HabitModel extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+final HabitModel habitAdapter = new HabitModel();

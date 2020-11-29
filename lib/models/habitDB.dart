@@ -21,7 +21,7 @@ class HabitDbProvider {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, "HabitDB.db");
     // deleteDatabase(path);
-    print("Database " + path);
+    // print("Database " + path);
     return await openDatabase(
       path,
       version: 1,
@@ -118,7 +118,7 @@ class HabitDbProvider {
 
   Future<Habit> getHabitById(int id) async {
     final db = await database;
-    var result = await db.query("Habit", where: "id = ", whereArgs: [id]);
+    var result = await db.query("Habit", where: "id = ?", whereArgs: [id]);
     return result.isNotEmpty ? Habit.fromMap(result.first) : Null;
   }
 

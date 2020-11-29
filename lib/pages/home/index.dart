@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habit.dart';
+import 'package:istiqomah/models/notification.dart';
 import 'package:istiqomah/pages/home/components/habit_list.dart';
 import 'package:provider/provider.dart';
 import 'modal/add.dart';
@@ -10,6 +11,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  void initState() {
+    super.initState();
+    initializeNotification(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
