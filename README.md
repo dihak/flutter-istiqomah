@@ -1,16 +1,40 @@
-# istiqomah
+# Istiqomah
 
-A new Flutter project.
+Istiqomah Application - A habit tracker App built with [Flutter](https://flutter.dev/)
 
-## Getting Started
+Set the Plan, Go Now, and Be Istiqomah
 
-This project is a starting point for a Flutter application.
+Download on Playstore : Coming Soon
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshot
+![Screens](https://user-images.githubusercontent.com/10445482/100530232-ea3b5a80-3221-11eb-8447-86bf6c0d3c26.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Features
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Membantu kamu mencapai resolusi hidup.
+2. Mengatur jenis aktivitas dengan fitur pengingat.
+3. Rangkuman data selama perjalanan Istiqomah kamu.
+4. Offline Data
+
+## Contributing
+
+Istiqomah is an open source project. If you would like to contribute 
+to the project, you are very welcome. There are many ways to
+contribute, even if you are not a software developer.
+
+* **Report bugs, suggest features.** The easiest way to contribute is to simply
+  use the app and let us know if you find any problems or have any suggestions
+  to improve it. You can either use the link inside the app, or open an issue
+  at GitHub. 
+
+* **Spread the word.** If you like the app, share it with your family, friends
+  and colleagues. You can also rate and review the app on Google Play Store, to help
+  other users find it more easily.
+
+* **Write some code.** If you are an Flutter developer, you are very welcome to 
+  contribute with code.
+
+
+## License
+
+Istiqomah is under the [GNU General Public License v3.0](LICENSE)
