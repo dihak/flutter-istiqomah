@@ -52,8 +52,8 @@ class DateItem extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           child: Container(
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             margin: EdgeInsets.only(top: 10),
             alignment: Alignment.center,
             decoration: decoration,
@@ -62,6 +62,7 @@ class DateItem extends StatelessWidget {
               date.day.toString(),
               textAlign: TextAlign.center,
               overflow: TextOverflow.visible,
+              style: TextStyle(fontSize: 14),
             ),
           ),
         ),

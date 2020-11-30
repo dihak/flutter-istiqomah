@@ -24,14 +24,20 @@ class HabitDate extends StatelessWidget {
       child: Container(
         child: Column(
           children: [
-            Text(dayName[weekday]),
+            Text(
+              dayName[weekday],
+              style: TextStyle(fontSize: 14),
+            ),
             Container(
-              width: 50,
-              height: 50,
+              width: 40,
+              height: 40,
               margin: EdgeInsets.only(top: 5),
               decoration: isChecked ? active : inActive,
               child: Center(
-                child: Text(date.day.toString()),
+                child: Text(
+                  date.day.toString(),
+                  style: TextStyle(fontSize: 15),
+                ),
               ),
             ),
           ],

@@ -40,7 +40,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
             'Ubah kebiasaan',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 27,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -74,7 +74,11 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
             ),
           ),
           SizedBox(width: 10),
-          Expanded(child: Text('Pengingat')),
+          Expanded(
+              child: Text(
+            'Pengingat',
+            style: TextStyle(fontSize: 15),
+          )),
         ],
         mainAxisAlignment: MainAxisAlignment.start,
       ),
@@ -127,14 +131,15 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
         onTap: () => onTap(text),
         child: Container(
           decoration: active ? decorationActive : decorationInactive,
-          width: 45,
-          height: 45,
+          width: 35,
+          height: 35,
           child: Center(
             child: Text(
               text,
               style: TextStyle(
                 color: active ? Colors.blue : Colors.white70,
                 fontWeight: active ? FontWeight.bold : FontWeight.normal,
+                fontSize: 13,
               ),
             ),
           ),
@@ -168,7 +173,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
         },
         child: Text(
           getTime(selectedTime),
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -182,11 +187,11 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
           padding: const EdgeInsets.only(bottom: 5),
           child: Text(
             'Nama',
-            style: TextStyle(color: Colors.white, fontSize: 18),
+            style: TextStyle(color: Colors.white, fontSize: 15),
           ),
         ),
         SizedBox(
-          height: 8.0,
+          height: 5.0,
         ),
         TextField(
           autofocus: true,
@@ -195,6 +200,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
             filled: true,
             fillColor: Color(0x33FFFFFF),
             border: OutlineInputBorder(borderSide: (BorderSide.none)),
+            contentPadding: EdgeInsets.all(10),
           ),
           style: TextStyle(color: Color(0xFFFFFFFF)),
         ),
@@ -220,7 +226,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
                 'Batal',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 18,
+                  fontSize: 15,
                   fontWeight: FontWeight.normal,
                 ),
               ),
@@ -236,7 +242,6 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
               disabledColor: Colors.grey,
               disabledTextColor: Colors.black,
               splashColor: Colors.blue[50],
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               onPressed: () {
                 Habit habit = widget.habit;
                 habit.name = inputController.text;
@@ -254,7 +259,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
               ),
               child: Text(
                 "OK",
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(fontSize: 15.0),
               ),
             ),
           ),
@@ -275,7 +280,7 @@ Future<Map> modalEditHabit(BuildContext context, Habit habit) async {
     context: context,
     isScrollControlled: true,
     builder: (context) => Padding(
-      padding: const EdgeInsets.all(40),
+      padding: const EdgeInsets.all(30),
       child: _ModalEditHabit(habit),
     ),
   );

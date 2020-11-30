@@ -23,7 +23,7 @@ class _DetailState extends State<Detail> {
       body: SafeArea(
         child: Container(
           child: ListView(
-            padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+            padding: EdgeInsets.all(30),
             children: <Widget>[
               _header(context, habit),
               SizedBox(height: 20),
@@ -51,14 +51,26 @@ class _DetailState extends State<Detail> {
 
     return Row(
       children: [
-        Icon(Icons.alarm),
+        Icon(
+          Icons.alarm,
+          size: 14,
+        ),
         SizedBox(width: 5),
-        Text(MaterialLocalizations.of(context)
-            .formatTimeOfDay(habit.time, alwaysUse24HourFormat: false)),
+        Text(
+          MaterialLocalizations.of(context)
+              .formatTimeOfDay(habit.time, alwaysUse24HourFormat: false),
+          style: TextStyle(fontSize: 14),
+        ),
         SizedBox(width: 5),
-        Icon(Icons.replay),
+        Icon(
+          Icons.replay,
+          size: 14,
+        ),
         SizedBox(width: 5),
-        Text(dayString.length == 7 ? 'Setiap hari' : dayString.join(', ')),
+        Text(
+          dayString.length == 7 ? 'Setiap hari' : dayString.join(', '),
+          style: TextStyle(fontSize: 14),
+        ),
       ],
     );
   }
@@ -78,7 +90,7 @@ class _DetailState extends State<Detail> {
   Widget _chart(BuildContext context, Habit habit) {
     return Container(
       child: MonthlyChart(habit),
-      height: 400,
+      height: 350,
     );
   }
 
@@ -101,7 +113,7 @@ class _DetailState extends State<Detail> {
       ),
       label: Text(
         'Hapus',
-        style: TextStyle(color: Colors.red, fontSize: 20),
+        style: TextStyle(color: Colors.red, fontSize: 15),
       ),
     );
   }

@@ -19,6 +19,7 @@ class CalendarHeader extends StatelessWidget {
             icon: Icon(
               Icons.arrow_back,
               color: Colors.white,
+              size: 18,
             ),
             onPressed: onPrev,
           ),
@@ -26,7 +27,7 @@ class CalendarHeader extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
             ),
           ),
           IconButton(
@@ -35,6 +36,7 @@ class CalendarHeader extends StatelessWidget {
             icon: Icon(
               Icons.arrow_forward,
               color: Colors.white,
+              size: 18,
             ),
             onPressed: onNext,
           ),

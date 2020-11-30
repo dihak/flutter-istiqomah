@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
       backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.only(top: 50, right: 40, left: 40),
+          padding: EdgeInsets.only(top: 30, right: 30, left: 30),
           child: Column(
             children: <Widget>[
               _header(context),
@@ -38,14 +38,14 @@ class _HomeState extends State<Home> {
   Widget _header(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(bottom: 20),
+      margin: EdgeInsets.only(bottom: 10),
       child: Row(children: [
         Expanded(
           child: Text(
             'ISTIQOMAH',
             textAlign: TextAlign.left,
             style: TextStyle(
-              fontSize: 30,
+              fontSize: 25,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
         RawMaterialButton(
           fillColor: Colors.white,
           shape: new CircleBorder(),
-          constraints: BoxConstraints.expand(width: 50, height: 50),
+          constraints: BoxConstraints.expand(width: 35, height: 35),
           onPressed: () {
             modalAddHabit(context).then(
               (value) {
@@ -74,6 +74,7 @@ class _HomeState extends State<Home> {
           },
           child: Icon(
             Icons.add,
+            size: 15.0,
             color: Theme.of(context).primaryColor,
           ),
         )

@@ -26,7 +26,7 @@ class Header extends StatelessWidget {
           child: Text(
             habit.name,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 20,
               fontWeight: FontWeight.w700,
             ),
           ),

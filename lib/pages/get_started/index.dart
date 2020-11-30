@@ -14,6 +14,8 @@ class GetStarted extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return SafeArea(
       child: Container(
+          // width: 300,
+          // height: 700,
           padding: EdgeInsets.all(50),
           child: Column(
             children: <Widget>[
@@ -34,7 +36,7 @@ class GetStarted extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white,
-          fontSize: 30,
+          fontSize: 28,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -66,7 +68,7 @@ class GetStarted extends StatelessWidget {
       textColor: Theme.of(context).primaryColor,
       disabledColor: Colors.grey,
       disabledTextColor: Colors.black,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(15),
       splashColor: Colors.blue[50],
       onPressed: () {
         Future<SharedPreferences> prefsFuture = SharedPreferences.getInstance();
@@ -77,7 +79,7 @@ class GetStarted extends StatelessWidget {
       },
       child: Text(
         "Mulai",
-        style: TextStyle(fontSize: 20.0),
+        style: TextStyle(fontSize: 18.0),
       ),
     );
   }
@@ -85,9 +87,9 @@ class GetStarted extends StatelessWidget {
   // Create List Widget from List<String>
   List<Widget> _createListWidget(BuildContext context, List<String> items) {
     TextStyle textStyle =
-        TextStyle(fontSize: 28, color: Colors.white, height: 1.5);
+        TextStyle(fontSize: 22, color: Colors.white, height: 1.5);
     TextStyle numberStyle =
-        TextStyle(fontSize: 20, color: Theme.of(context).primaryColor);
+        TextStyle(fontSize: 18, color: Theme.of(context).primaryColor);
     List<Widget> result = [];
 
     var number = 1;
@@ -98,8 +100,8 @@ class GetStarted extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: 40,
-                height: 40,
+                width: 35,
+                height: 35,
                 margin: EdgeInsets.only(right: 20, top: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,

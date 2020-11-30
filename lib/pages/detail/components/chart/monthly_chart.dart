@@ -12,7 +12,7 @@ class MonthlyChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      padding: EdgeInsets.all(30),
+      padding: EdgeInsets.all(20),
       margin: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         color: Color(0xff559DFF),
@@ -37,7 +37,7 @@ class MonthlyChart extends StatelessWidget {
     return Text(
       'Statistik',
       textAlign: TextAlign.left,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
     );
   }
 }
@@ -78,7 +78,7 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
     double y, {
     bool isTouched = false,
     Color barColor = Colors.white,
-    double width = 30,
+    double width = 28,
     List<int> showTooltips = const [],
   }) {
     return BarChartGroupData(
@@ -135,7 +135,7 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
         bottomTitles: SideTitles(
           showTitles: true,
           getTextStyles: (value) => const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
           margin: 16,
           getTitles: (double value) {
             return monthShortName[value.toInt()];

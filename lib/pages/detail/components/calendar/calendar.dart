@@ -22,7 +22,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(15),
       margin: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         color: Color(0xff559DFF),
@@ -62,13 +62,55 @@ class _CalendarState extends State<Calendar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Expanded(child: Text('Sen', textAlign: TextAlign.center)),
-        Expanded(child: Text('Sel', textAlign: TextAlign.center)),
-        Expanded(child: Text('Rab', textAlign: TextAlign.center)),
-        Expanded(child: Text('Kam', textAlign: TextAlign.center)),
-        Expanded(child: Text('Jum', textAlign: TextAlign.center)),
-        Expanded(child: Text('Sab', textAlign: TextAlign.center)),
-        Expanded(child: Text('Min', textAlign: TextAlign.center)),
+        Expanded(
+          child: Text(
+            'Sen',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            'Sel',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            'Rab',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            'Kam',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            'Jum',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            'Sab',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            'Min',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15),
+          ),
+        ),
       ],
     );
   }

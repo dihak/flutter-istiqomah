@@ -3,7 +3,7 @@ import 'package:istiqomah/constants/app.dart';
 import 'date.dart';
 
 const TextStyle title = TextStyle(
-  fontSize: 24,
+  fontSize: 18,
   fontWeight: FontWeight.w700,
 );
 
@@ -38,7 +38,7 @@ class _HabitItemState extends State<HabitItem> {
       onTap: widget.onTap,
       child: Wrap(children: [
         Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(18),
           margin: EdgeInsets.only(bottom: 20),
           decoration: BoxDecoration(
             color: Color(0xff559DFF),
@@ -73,13 +73,25 @@ class _HabitItemState extends State<HabitItem> {
           if (widget.time != null)
             Row(
               children: [
-                Icon(Icons.alarm),
+                Icon(
+                  Icons.alarm,
+                  size: 15,
+                ),
                 SizedBox(width: 5),
-                Text(widget.time.format(context)),
+                Text(
+                  widget.time.format(context),
+                  style: TextStyle(fontSize: 14),
+                ),
                 SizedBox(width: 5),
-                Icon(Icons.replay),
+                Icon(
+                  Icons.replay,
+                  size: 15,
+                ),
                 SizedBox(width: 5),
-                Text(day),
+                Text(
+                  day,
+                  style: TextStyle(fontSize: 14),
+                ),
               ],
             ),
           if (widget.time != null) SizedBox(height: 10),
