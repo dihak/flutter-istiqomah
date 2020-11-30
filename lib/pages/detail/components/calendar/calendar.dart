@@ -117,6 +117,7 @@ class _CalendarState extends State<Calendar> {
 
   Widget _dateGrid() {
     DateTime now = DateTime.now();
+    now = DateTime.utc(now.year, now.month, now.day);
     // Get first date of calendar
     DateTime firstDate = DateTime.utc(date.year, date.month, 1);
     int firstWeekInCalendar = DateTime.monday - firstDate.weekday;
