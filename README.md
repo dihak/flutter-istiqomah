@@ -11,9 +11,9 @@ Download on Playstore : Coming Soon
 
 ## Features
 
-1. Membantu kamu mencapai resolusi hidup.
-2. Mengatur jenis aktivitas dengan fitur pengingat.
-3. Rangkuman data selama perjalanan Istiqomah kamu.
+1.Helping you achieve life resolution.
+2.Set the type of activity, with the reminder feature.
+3.Get a summary of the data during your Istiqomah journey.
 4. Offline Data
 
 ## Contributing
