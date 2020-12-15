@@ -6,24 +6,24 @@ Future<bool> modalDeleteHabit(BuildContext context, String name) async {
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Hapus'),
+        title: Text('Delete'),
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              Text('Apakah anda yakin ingin menghapus $name?'),
+              Text('Are you sure you want to delete $name?'),
             ],
           ),
         ),
         actions: <Widget>[
           TextButton(
-            child: Text('Batal'),
+            child: Text('Cancel'),
             onPressed: () {
               Navigator.of(context).pop(false);
             },
           ),
           TextButton(
             child: Text(
-              'Hapus',
+              'Delete',
               style: TextStyle(color: Colors.red),
             ),
             onPressed: () {
