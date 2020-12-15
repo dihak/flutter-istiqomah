@@ -64,49 +64,49 @@ class _CalendarState extends State<Calendar> {
       children: [
         Expanded(
           child: Text(
-            'Sen',
+            'Mon',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 15),
           ),
         ),
         Expanded(
           child: Text(
-            'Sel',
+            'Tue',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 15),
           ),
         ),
         Expanded(
           child: Text(
-            'Rab',
+            'Wed',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 15),
           ),
         ),
         Expanded(
           child: Text(
-            'Kam',
+            'Thu',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 15),
           ),
         ),
         Expanded(
           child: Text(
-            'Jum',
+            'Fri',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 15),
           ),
         ),
         Expanded(
           child: Text(
-            'Sab',
+            'Sat',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 15),
           ),
         ),
         Expanded(
           child: Text(
-            'Min',
+            'Sun',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 15),
           ),
