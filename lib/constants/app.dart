@@ -14,11 +14,11 @@ final List<String> monthShortName = [
 ];
 
 final List<String> dayShortName = [
-  "Sen",
-  "Sel",
-  "Rab",
-  "Kam",
-  "Jum",
-  "Sab",
-  "Min"
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri",
+  "Sat",
+  "Sun"
 ];
