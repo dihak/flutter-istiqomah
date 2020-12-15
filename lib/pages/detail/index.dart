@@ -68,7 +68,7 @@ class _DetailState extends State<Detail> {
         ),
         SizedBox(width: 5),
         Text(
-          dayString.length == 7 ? 'Setiap hari' : dayString.join(', '),
+          dayString.length == 7 ? 'Everyday' : dayString.join(', '),
           style: TextStyle(fontSize: 14),
         ),
       ],
@@ -112,7 +112,7 @@ class _DetailState extends State<Detail> {
         color: Colors.red,
       ),
       label: Text(
-        'Hapus',
+        'Delete',
         style: TextStyle(color: Colors.red, fontSize: 15),
       ),
     );
