@@ -63,7 +63,7 @@ class _HabitItemState extends State<HabitItem> {
     if (widget.time != null) {
       List<String> dayString =
           widget.dayList.map((e) => dayShortName[e - 1]).toList();
-      day = dayString.length == 7 ? 'Setiap hari' : dayString.join(', ');
+      day = dayString.length == 7 ? 'Everyday' : dayString.join(', ');
     }
     return Padding(
       padding: EdgeInsets.only(bottom: 15),
