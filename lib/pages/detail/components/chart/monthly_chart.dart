@@ -35,7 +35,7 @@ class MonthlyChart extends StatelessWidget {
 
   Widget _header() {
     return Text(
-      'Statistik',
+      'Statistics',
       textAlign: TextAlign.left,
       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
     );
