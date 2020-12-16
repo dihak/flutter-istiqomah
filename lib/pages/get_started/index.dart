@@ -45,9 +45,9 @@ class GetStarted extends StatelessWidget {
 
   Widget _content(BuildContext context) {
     List<String> lists = const [
-      "Membantu kamu mencapai resolusi hidup",
-      "Mengatur jenis aktivitas, dengan fitur pengingat",
-      "Dapatkan rangkuman data selama perjalanan istiqomah kamu"
+      "Helping you achieve life resolution",
+      "Set the type of activity, with the reminder feature",
+      "Get a summary of the data during your Istiqomah journey"
     ];
 
     List<Widget> listWidget = _createListWidget(context, lists);
@@ -78,7 +78,7 @@ class GetStarted extends StatelessWidget {
         Navigator.of(context).pushReplacementNamed(Routes.home);
       },
       child: Text(
-        "Mulai",
+        "Start",
         style: TextStyle(fontSize: 18.0),
       ),
     );

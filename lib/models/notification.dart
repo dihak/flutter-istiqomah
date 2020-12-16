@@ -57,7 +57,7 @@ class NotificationModel {
 
   static const AndroidNotificationDetails androidPlatformChannelSpecifics =
       AndroidNotificationDetails(
-          'habit-notif', 'Pengingat', 'Pengingat aktivitas harian',
+          'habit-notif', 'Reminder', 'Daily Activity Reminder',
           importance: Importance.max,
           priority: Priority.high,
           ticker: 'ticker',
@@ -94,7 +94,7 @@ class NotificationModel {
       await notif.zonedSchedule(
           notifId + (item - 1),
           habit.name,
-          'Jangan lupa ${habit.name} hari ini!',
+          'Do not forget to Complete ${habit.name} today!!',
           newSchedule,
           platformChannelSpecifics,
           androidAllowWhileIdle: true,
