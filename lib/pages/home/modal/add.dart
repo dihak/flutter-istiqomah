@@ -21,7 +21,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
         Padding(
           padding: const EdgeInsets.only(bottom: 20),
           child: Text(
-            'Tambah kebiasaan',
+            'Get into a Habit',
             style: TextStyle(
               color: Colors.white,
               fontSize: 27,
@@ -60,7 +60,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
           SizedBox(width: 10),
           Expanded(
               child: Text(
-            'Pengingat',
+            'Reminder',
             style: TextStyle(fontSize: 15),
           )),
         ],
