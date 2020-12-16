@@ -253,7 +253,7 @@ Future<Map> modalAddHabit(BuildContext context) async {
   return showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
-        top: Radius.circular(40.0),
+        top: Radius.circular(10.0),
       ),
     ),
     backgroundColor: Theme.of(context).primaryColor,
