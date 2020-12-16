@@ -24,7 +24,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
             'Tambah kebiasaan',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 27,
               fontWeight: FontWeight.bold,
             ),
           ),
