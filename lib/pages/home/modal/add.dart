@@ -170,7 +170,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
           child: Text(
-            'Nama',
+            'Name',
             style: TextStyle(color: Colors.white, fontSize: 15),
           ),
         ),
@@ -207,7 +207,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
                 Navigator.pop(context);
               },
               child: Text(
-                'Batal',
+                'Cancel',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
