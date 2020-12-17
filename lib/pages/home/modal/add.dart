@@ -221,7 +221,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
           padding: EdgeInsets.only(bottom: 10),
           child: Center(
             child: FlatButton(
-              color: Colors.white,
+              color: Theme.of(context).accentColor,
               textColor: Theme.of(context).primaryColor,
               disabledColor: Colors.grey,
               disabledTextColor: Colors.black,
