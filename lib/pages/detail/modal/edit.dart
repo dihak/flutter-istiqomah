@@ -40,7 +40,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
             'Change Habits',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 27,
               fontWeight: FontWeight.bold,
             ),
           ),
