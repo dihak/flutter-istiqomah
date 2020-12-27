@@ -22,12 +22,9 @@ Future<bool> modalDeleteHabit(BuildContext context, String name) async {
             },
           ),
           TextButton(
-            color: Colors.red[300],
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             child: Text(
               'Delete',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.red),
             ),
             onPressed: () {
               Navigator.of(context).pop(true);
