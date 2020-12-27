@@ -21,10 +21,10 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
         Padding(
           padding: const EdgeInsets.only(bottom: 20),
           child: Text(
-            'Tambah kebiasaan',
+            'Get into a Habit',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 27,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -60,7 +60,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
           SizedBox(width: 10),
           Expanded(
               child: Text(
-            'Pengingat',
+            'Reminder',
             style: TextStyle(fontSize: 15),
           )),
         ],
@@ -170,7 +170,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
           child: Text(
-            'Nama',
+            'Name',
             style: TextStyle(color: Colors.white, fontSize: 15),
           ),
         ),
@@ -207,7 +207,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
                 Navigator.pop(context);
               },
               child: Text(
-                'Batal',
+                'Cancel',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
@@ -221,7 +221,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
           padding: EdgeInsets.only(bottom: 10),
           child: Center(
             child: FlatButton(
-              color: Colors.white,
+              color: Theme.of(context).accentColor,
               textColor: Theme.of(context).primaryColor,
               disabledColor: Colors.grey,
               disabledTextColor: Colors.black,
@@ -253,7 +253,7 @@ Future<Map> modalAddHabit(BuildContext context) async {
   return showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
-        top: Radius.circular(40.0),
+        top: Radius.circular(10.0),
       ),
     ),
     backgroundColor: Theme.of(context).primaryColor,
