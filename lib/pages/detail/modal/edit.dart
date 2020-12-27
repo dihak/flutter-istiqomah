@@ -37,7 +37,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
         Padding(
           padding: const EdgeInsets.only(bottom: 20),
           child: Text(
-            'Ubah kebiasaan',
+            'Change Habits',
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
@@ -76,7 +76,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
           SizedBox(width: 10),
           Expanded(
               child: Text(
-            'Pengingat',
+            'Reminder',
             style: TextStyle(fontSize: 15),
           )),
         ],
@@ -186,7 +186,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
         Padding(
           padding: const EdgeInsets.only(bottom: 5),
           child: Text(
-            'Nama',
+            'Name',
             style: TextStyle(color: Colors.white, fontSize: 15),
           ),
         ),
@@ -223,7 +223,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
                 Navigator.pop(context);
               },
               child: Text(
-                'Batal',
+                'Cancel',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
