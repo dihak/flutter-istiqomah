@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
           },
           child: Icon(
             Icons.add,
-            size: 15.0,
+            size: 25.0,
             color: Theme.of(context).primaryColor,
           ),
         )
