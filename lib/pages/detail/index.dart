@@ -97,7 +97,7 @@ class _DetailState extends State<Detail> {
   Widget _deleteButton(BuildContext context, Habit habit) {
     return FlatButton.icon(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      color: Colors.red[300],
+      color: Colors.red,
       onPressed: () {
         modalDeleteHabit(context, habit.name).then((value) {
           if (value) {

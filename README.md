@@ -4,7 +4,8 @@ Istiqomah Application - A habit tracker App built with [Flutter](https://flutter
 
 Set the Plan, Go Now, and Be Istiqomah
 
-Download on Playstore : Coming Soon
+[![Google play store](https://user-images.githubusercontent.com/10445482/103167325-cf79f700-485c-11eb-84c1-8958c70bedf9.png)](https://play.google.com/store/apps/details?id=com.istiqomah)
+
 
 ## Screenshot
 ![Screens](https://user-images.githubusercontent.com/10445482/100530232-ea3b5a80-3221-11eb-8447-86bf6c0d3c26.png)

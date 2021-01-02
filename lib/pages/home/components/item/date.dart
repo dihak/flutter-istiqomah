@@ -10,7 +10,7 @@ class HabitDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List dayName = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+    final List dayName = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     final int weekday = date.weekday - 1;
     final BoxDecoration active = BoxDecoration(
       color: Theme.of(context).primaryColor,

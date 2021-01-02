@@ -40,7 +40,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
             'Change Habits',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 27,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -273,7 +273,7 @@ Future<Map> modalEditHabit(BuildContext context, Habit habit) async {
   return showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
-        top: Radius.circular(40.0),
+        top: Radius.circular(10.0),
       ),
     ),
     backgroundColor: Theme.of(context).primaryColor,

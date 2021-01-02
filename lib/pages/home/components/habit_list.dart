@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habit.dart';
+import 'package:istiqomah/pages/home/components/empty_tasks.dart';
 import 'package:provider/provider.dart';
 import 'item/item.dart';
 
@@ -15,6 +16,10 @@ class _HabitListState extends State<HabitList> {
   Widget build(BuildContext context) {
     return Consumer<HabitModel>(
       builder: (context, data, child) {
+        if (data.habits.length == 0) {
+          return EmptyTask();
+        }
+
         List<HabitItem> items = [];
 
         for (var item in data.habits) {

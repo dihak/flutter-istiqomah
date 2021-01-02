@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
         RawMaterialButton(
           fillColor: Colors.white,
           shape: new CircleBorder(),
-          constraints: BoxConstraints.expand(width: 35, height: 35),
+          constraints: BoxConstraints.expand(width: 45, height: 45),
           onPressed: () {
             modalAddHabit(context).then(
               (value) {

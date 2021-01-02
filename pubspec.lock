@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0-nullsafety.3"
+  convert:
+    dependency: transitive
+    description:
+      name: convert
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -111,6 +118,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  flutter_svg:
+    dependency: "direct main"
+    description:
+      name: flutter_svg
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.19.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -198,6 +212,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.4+3"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   platform:
     dependency: transitive
     description:
@@ -371,6 +392,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
+  xml:
+    dependency: transitive
+    description:
+      name: xml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.5.1"
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
-  flutter: ">=1.12.13+hotfix.5 <2.0.0"
+  flutter: ">=1.18.0-6.0.pre <2.0.0"

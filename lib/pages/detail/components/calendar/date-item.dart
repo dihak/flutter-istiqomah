@@ -62,7 +62,7 @@ class DateItem extends StatelessWidget {
               date.day.toString(),
               textAlign: TextAlign.center,
               overflow: TextOverflow.visible,
-              style: TextStyle(fontSize: 14),
+              style: TextStyle(fontSize: 13),
             ),
           ),
         ),
