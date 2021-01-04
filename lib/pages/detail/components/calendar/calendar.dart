@@ -152,7 +152,7 @@ class _CalendarState extends State<Calendar> {
         onPressed: (dateClick) {
           if (date.month != dateClick.month) {
             setState(() {
-              date = new DateTime(date.year, dateClick.month, 1);
+              date = new DateTime(dateClick.year, dateClick.month, 1);
             });
           } else {
             widget.onToggleDate(dateClick);
