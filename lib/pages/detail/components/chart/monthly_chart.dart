@@ -109,7 +109,10 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
       DateTime date = new DateTime(year, ++month);
       final double total = widget.habit.data
           .where(
-            (element) => element.indexOf('${date.year}-${date.month}') != -1,
+            (element) =>
+                element.indexOf(
+                    '${date.year}-${date.month.toString().padLeft(2, '0')}') !=
+                -1,
           )
           .length
           .toDouble();
