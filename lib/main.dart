@@ -37,7 +37,7 @@ class _IstiqomahAppState extends State<IstiqomahApp> {
     return MaterialApp(
       title: 'ISTIQOMAH',
       routes: Routes.routes,
-      theme: blueTheme,
+      theme: darkTheme,
       home: Scaffold(
         body: _body,
       ),
