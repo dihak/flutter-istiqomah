@@ -5,7 +5,6 @@ import 'package:istiqomah/constants/app_theme.dart';
 import 'package:istiqomah/models/habit.dart';
 
 import '../../../../constants/app_theme.dart';
-import '../../../../constants/app_theme.dart';
 
 class MonthlyChart extends StatelessWidget {
   final Habit habit;
