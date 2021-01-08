@@ -7,6 +7,8 @@ import 'package:istiqomah/pages/get_started/index.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'constants/app_theme.dart';
+
 Future<void> main() async {
   runApp(
     ChangeNotifierProvider(
@@ -35,7 +37,7 @@ class _IstiqomahAppState extends State<IstiqomahApp> {
     return MaterialApp(
       title: 'ISTIQOMAH',
       routes: Routes.routes,
-      theme: themeData,
+      theme: blueTheme,
       home: Scaffold(
         backgroundColor: Colors.blue,
         body: _body,

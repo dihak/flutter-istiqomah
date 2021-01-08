@@ -63,6 +63,7 @@ class GetStarted extends StatelessWidget {
 
   Widget _button(BuildContext context) {
     return FlatButton(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       minWidth: 300,
       color: Colors.white,
       textColor: Theme.of(context).primaryColor,
