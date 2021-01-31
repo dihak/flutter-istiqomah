@@ -36,7 +36,7 @@ class GetStarted extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white,
-          fontSize: 28,
+          fontSize: 40,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -77,6 +77,7 @@ class GetStarted extends StatelessWidget {
         });
         Navigator.of(context).pushReplacementNamed(Routes.home);
       },
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Text(
         "Start",
         style: TextStyle(fontSize: 18.0),

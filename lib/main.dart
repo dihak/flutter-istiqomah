@@ -6,6 +6,8 @@ import 'package:istiqomah/routes.dart';
 import 'package:istiqomah/pages/get_started/index.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:istiqomah/pages/settings/config.dart';
+import 'constants/app_theme.dart';
 
 Future<void> main() async {
   runApp(
@@ -28,6 +30,9 @@ class _IstiqomahAppState extends State<IstiqomahApp> {
   void initState() {
     super.initState();
     _loadStarted();
+    currentTheme.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
@@ -35,9 +40,11 @@ class _IstiqomahAppState extends State<IstiqomahApp> {
     return MaterialApp(
       title: 'ISTIQOMAH',
       routes: Routes.routes,
-      theme: themeData,
+      theme: blueTheme,
+      darkTheme: darkTheme,
+      themeMode: currentTheme.currentTheme(),
       home: Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: _body,
       ),
     );
