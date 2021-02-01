@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/constants/app_theme.dart';
-import 'package:istiqomah/pages/settings/config.dart';
 import '../../../../constants/app_theme.dart';
 
 class DateItem extends StatelessWidget {
