@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/constants/app_theme.dart';
+import '../../../../constants/app_theme.dart';
 
 class DateItem extends StatelessWidget {
   DateItem({
@@ -17,7 +18,7 @@ class DateItem extends StatelessWidget {
   final Function(DateTime) onPressed;
 
   final BoxDecoration activeStyle = BoxDecoration(
-    color: themeData.primaryColor,
+    color: light.primaryColor,
     shape: BoxShape.circle,
   );
   final BoxDecoration inActiveStyle = BoxDecoration(

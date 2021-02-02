@@ -3,6 +3,7 @@ import 'package:istiqomah/models/habit.dart';
 import 'package:istiqomah/models/notification.dart';
 import 'package:istiqomah/pages/home/components/habit_list.dart';
 import 'package:provider/provider.dart';
+import 'package:istiqomah/routes.dart';
 import 'modal/add.dart';
 
 class Home extends StatefulWidget {
@@ -52,7 +53,9 @@ class _HomeState extends State<Home> {
         ),
         RawMaterialButton(
           fillColor: Colors.white,
-          shape: new CircleBorder(),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.horizontal(
+                  right: Radius.circular(2), left: Radius.circular(10))),
           constraints: BoxConstraints.expand(width: 45, height: 45),
           onPressed: () {
             modalAddHabit(context).then(
@@ -77,7 +80,21 @@ class _HomeState extends State<Home> {
             size: 25.0,
             color: Theme.of(context).primaryColor,
           ),
-        )
+        ),
+        RawMaterialButton(
+            fillColor: Colors.white,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.horizontal(
+                    left: Radius.circular(2), right: Radius.circular(10))),
+            constraints: BoxConstraints.expand(width: 45, height: 45),
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(Routes.settings);
+            },
+            child: Icon(
+              Icons.settings,
+              size: 25.0,
+              color: Theme.of(context).primaryColor,
+            ))
       ]),
     );
   }
