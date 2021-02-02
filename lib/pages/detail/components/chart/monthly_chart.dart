@@ -54,7 +54,7 @@ class BarChartMonthly extends StatefulWidget {
 }
 
 class BarChartMonthlyState extends State<BarChartMonthly> {
-  final Color barBackgroundColor = blueTheme.primaryColor;
+  final Color barBackgroundColor = light.primaryColor;
   final Duration animDuration = const Duration(milliseconds: 250);
 
   int touchedIndex;

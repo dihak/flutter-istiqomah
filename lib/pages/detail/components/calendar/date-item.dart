@@ -18,7 +18,7 @@ class DateItem extends StatelessWidget {
   final Function(DateTime) onPressed;
 
   final BoxDecoration activeStyle = BoxDecoration(
-    color: blueTheme.primaryColor,
+    color: light.primaryColor,
     shape: BoxShape.circle,
   );
   final BoxDecoration inActiveStyle = BoxDecoration(

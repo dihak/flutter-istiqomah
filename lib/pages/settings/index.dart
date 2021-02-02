@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:istiqomah/pages/settings/config.dart';
+import 'package:istiqomah/constants/app_theme.dart';
 import 'package:istiqomah/routes.dart';
+import 'package:provider/provider.dart';
 import '../../routes.dart';
 
 class Settings extends StatelessWidget {
@@ -20,17 +21,27 @@ class Settings extends StatelessWidget {
           onPressed: () =>
               Navigator.of(context).pushReplacementNamed(Routes.home),
         ),
-        title: Text('Setting'),
+        title: Text('Theme Provider'),
         shadowColor: Theme.of(context).canvasColor,
         centerTitle: true,
       ),
-      floatingActionButton: FloatingActionButton.extended(
-          elevation: 1,
-          onPressed: () {
-            currentTheme.switchTheme();
-          },
-          icon: Icon(Icons.brightness_high),
-          label: Text('Theme')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Consumer<ThemeNotifier>(
+              builder: (context, notifier, child) => SwitchListTile(
+                title: Text("Dark Mode"),
+                onChanged: (val) {
+                  notifier.toggleTheme();
+                },
+                value: notifier.darkTheme,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
