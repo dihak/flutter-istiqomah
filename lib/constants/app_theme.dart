@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 ThemeData dark = new ThemeData(
   fontFamily: FontFamily.productSans,
   brightness: Brightness.dark,
-  primaryColor: Color(0xff222222),
+  primaryColor: Color(0xff101010),
   primaryColorBrightness: Brightness.dark,
   accentColor: Color(0xffa9b3ff),
   accentColorBrightness: Brightness.dark,
