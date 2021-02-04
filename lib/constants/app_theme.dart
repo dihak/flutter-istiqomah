@@ -5,11 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 ThemeData dark = new ThemeData(
   fontFamily: FontFamily.productSans,
   brightness: Brightness.dark,
-  primaryColor: Colors.black,
+  primaryColor: Color(0xff222222),
   primaryColorBrightness: Brightness.dark,
-  accentColor: Colors.blueAccent[700],
+  accentColor: Color(0xffa9b3ff),
   accentColorBrightness: Brightness.dark,
-  backgroundColor: Colors.blueAccent[200],
+  backgroundColor: Color(0xff86E3F5),
+  buttonColor: Color(0xffff9292),
   canvasColor: Colors.transparent,
   textTheme: TextTheme(
     bodyText1: TextStyle(color: Colors.white),
@@ -20,12 +21,13 @@ ThemeData dark = new ThemeData(
 
 ThemeData light = new ThemeData(
   fontFamily: FontFamily.productSans,
-  brightness: Brightness.dark,
+  brightness: Brightness.light,
   primaryColor: Color(0xff2F80ED),
-  primaryColorBrightness: Brightness.dark,
+  primaryColorBrightness: Brightness.light,
   accentColor: Colors.blueAccent,
-  accentColorBrightness: Brightness.dark,
+  accentColorBrightness: Brightness.light,
   backgroundColor: Colors.blueAccent[700],
+  buttonColor: Color(0xffe97878),
   canvasColor: Colors.transparent,
   textTheme: TextTheme(
     bodyText1: TextStyle(color: Colors.white),

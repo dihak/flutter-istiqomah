@@ -6,6 +6,7 @@ import 'package:istiqomah/pages/detail/modal/delete.dart';
 import 'package:provider/provider.dart';
 import '_header.dart';
 import 'components/calendar/calendar.dart';
+import 'package:istiqomah/constants/app_theme.dart';
 
 class Detail extends StatefulWidget {
   @override
@@ -97,7 +98,7 @@ class _DetailState extends State<Detail> {
   Widget _deleteButton(BuildContext context, Habit habit) {
     return FlatButton.icon(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      color: Colors.red,
+      color: Theme.of(context).buttonColor,
       onPressed: () {
         modalDeleteHabit(context, habit.name).then((value) {
           if (value) {
