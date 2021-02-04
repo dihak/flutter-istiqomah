@@ -6,7 +6,6 @@ import 'package:istiqomah/pages/detail/modal/delete.dart';
 import 'package:provider/provider.dart';
 import '_header.dart';
 import 'components/calendar/calendar.dart';
-import 'package:istiqomah/constants/app_theme.dart';
 
 class Detail extends StatefulWidget {
   @override

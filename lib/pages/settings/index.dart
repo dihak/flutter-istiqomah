@@ -21,7 +21,7 @@ class Settings extends StatelessWidget {
           onPressed: () =>
               Navigator.of(context).pushReplacementNamed(Routes.home),
         ),
-        title: Text('Theme Provider'),
+        title: Text('Settings'),
         shadowColor: Theme.of(context).canvasColor,
         centerTitle: true,
       ),
