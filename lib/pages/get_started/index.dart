@@ -35,7 +35,7 @@ class GetStarted extends StatelessWidget {
         'ISTIQOMAH',
         textAlign: TextAlign.center,
         style: TextStyle(
-          color: Colors.white,
+          color: Color(0xff4a73c2),
           fontSize: 40,
           fontWeight: FontWeight.bold,
         ),
@@ -64,10 +64,8 @@ class GetStarted extends StatelessWidget {
   Widget _button(BuildContext context) {
     return FlatButton(
       minWidth: 300,
-      color: Colors.white,
+      color: Color(0xff4285F4),
       textColor: Theme.of(context).primaryColor,
-      disabledColor: Colors.grey,
-      disabledTextColor: Colors.black,
       padding: EdgeInsets.all(15),
       splashColor: Colors.blue[50],
       onPressed: () {
@@ -94,6 +92,11 @@ class GetStarted extends StatelessWidget {
     List<Widget> result = [];
 
     var number = 1;
+    var colorsAvail = new List(3);
+    colorsAvail[0] = Color(0xffDB4437);
+    colorsAvail[1] = Color(0xffF4B400);
+    colorsAvail[2] = Color(0xff0F9D58);
+    var i = 0;
     items.forEach((text) {
       result.add(Container(
           margin: EdgeInsets.only(bottom: 50),
@@ -105,7 +108,7 @@ class GetStarted extends StatelessWidget {
                 height: 35,
                 margin: EdgeInsets.only(right: 20, top: 10),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: colorsAvail[i],
                   borderRadius: BorderRadius.all(const Radius.circular(50)),
                 ),
                 child: Center(
@@ -124,6 +127,7 @@ class GetStarted extends StatelessWidget {
             ],
           )));
       number++;
+      i++;
     });
 
     return result;
