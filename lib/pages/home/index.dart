@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
           ),
         ),
         RawMaterialButton(
-          fillColor: Colors.white,
+          fillColor: Theme.of(context).buttonColor,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.horizontal(
                   right: Radius.circular(2), left: Radius.circular(10))),
@@ -82,7 +82,7 @@ class _HomeState extends State<Home> {
           ),
         ),
         RawMaterialButton(
-            fillColor: Colors.white,
+            fillColor: Theme.of(context).buttonColor,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.horizontal(
                     left: Radius.circular(2), right: Radius.circular(10))),

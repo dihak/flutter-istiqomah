@@ -7,10 +7,10 @@ ThemeData dark = new ThemeData(
   brightness: Brightness.dark,
   primaryColor: Color(0xff101010),
   primaryColorBrightness: Brightness.dark,
-  accentColor: Color(0xffa9b3ff),
+  accentColor: Color(0xff4a73c2),
   accentColorBrightness: Brightness.dark,
-  backgroundColor: Color(0xff86E3F5),
-  buttonColor: Color(0xffff9292),
+  backgroundColor: Color(0xff5f9cd9),
+  buttonColor: Color(0xff5f9cd9),
   canvasColor: Colors.transparent,
   textTheme: TextTheme(
     bodyText1: TextStyle(color: Colors.white),
@@ -27,7 +27,7 @@ ThemeData light = new ThemeData(
   accentColor: Colors.blueAccent,
   accentColorBrightness: Brightness.light,
   backgroundColor: Colors.blueAccent[700],
-  buttonColor: Color(0xffe97878),
+  buttonColor: Colors.white,
   canvasColor: Colors.transparent,
   textTheme: TextTheme(
     bodyText1: TextStyle(color: Colors.white),
