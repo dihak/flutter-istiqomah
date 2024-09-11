@@ -70,7 +70,8 @@ class HabitDbProvider {
   }
 
   Future<List<Habit>> getAllHabits() async {
-    final db = await (database as FutureOr<Database>);
+    final db = await database;
+    if (db == null) throw Exception("Database is null");
     List<Map> results = await db.query("Habit",
         columns: ['id', 'name', 'time'], orderBy: "id ASC");
     List<Map> detail = await db.query("HabitDetail",
@@ -119,13 +120,15 @@ class HabitDbProvider {
   }
 
   Future<Habit> getHabitById(int id) async {
-    final db = await (database as FutureOr<Database>);
+    final db = await database;
+    if (db == null) throw Exception("Database is null");
     var result = await db.query("Habit", where: "id = ?", whereArgs: [id]);
-    return (result.isNotEmpty ? Habit.fromMap(result.first) : Null) as FutureOr<Habit>;
+    return result.isNotEmpty ? Habit.fromMap(result.first) : throw Exception("Habit not found");
   }
 
   Future<Habit> insert(String name, TimeOfDay? time, List<int>? daylist) async {
-    final db = await (database as FutureOr<Database>);
+    final db = await database;
+    if (db == null) throw Exception("Database is null");
 
     // Insert to db
     var id = await db.insert('Habit', {
@@ -146,7 +149,8 @@ class HabitDbProvider {
   }
 
   Future<bool> toggleDate(Habit habit, DateTime date) async {
-    final db = await (database as FutureOr<Database>);
+    final db = await database;
+    if (db == null) throw Exception("Database is null");
     final String dateString = date.toString().substring(0, 10);
     var result = await db.delete(
       "HabitDetail",
@@ -165,7 +169,8 @@ class HabitDbProvider {
   }
 
   Future<int> update(Habit habit) async {
-    final db = await (database as FutureOr<Database>);
+    final db = await database;
+    if (db == null) throw Exception("Database is null");
     var result = await db
         .update("Habit", habit.toMap(), where: "id = ?", whereArgs: [habit.id]);
     if (habit.time == null) {
@@ -188,12 +193,14 @@ class HabitDbProvider {
   }
 
   delete(Habit habit) async {
-    final db = await (database as FutureOr<Database>);
+    final db = await database;
+    if (db == null) throw Exception("Database is null");
     db.delete("Habit", where: "id = ?", whereArgs: [habit.id]);
   }
 
   Future<Map<String, dynamic>> getOrderState() async {
-    final db = await (database as FutureOr<Database>);
+    final db = await database;
+    if (db == null) throw Exception("Database is null");
     var result = await db.query('Option', where: "name = 'habit_order'");
     if (result.length == 0) {
       var data = {
@@ -208,7 +215,8 @@ class HabitDbProvider {
   }
 
   saveOrderState(List<int?> indexList) async {
-    final db = await (database as FutureOr<Database>);
+    final db = await database;
+    if (db == null) throw Exception("Database is null");
     var result = await db.update(
         'Option', {'name': 'habit_order', 'value': indexList.join(',')},
         where: "name = 'habit_order'");
