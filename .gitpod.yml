@@ -1,0 +1,61 @@
+tasks:
+  - name: Setup Flutter and Android
+    init: |
+      # Install Flutter
+      git clone https://github.com/flutter/flutter.git -b stable /home/gitpod/flutter
+      
+      # Add Flutter to the PATH
+      echo 'export PATH="$PATH:/home/gitpod/flutter/bin"' >> /home/gitpod/.bashrc
+      export PATH="$PATH:/home/gitpod/flutter/bin"
+      
+      # Install Flutter dependencies
+      sudo apt-get update && sudo apt-get install -y libgtk-3-dev libblkid-dev liblzma-dev
+      
+      # Download and install Android Command Line Tools
+      mkdir -p /home/gitpod/android-sdk
+      wget https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip
+      unzip commandlinetools-linux-8092744_latest.zip -d /home/gitpod/android-sdk/cmdline-tools
+      mkdir -p /home/gitpod/android-sdk/cmdline-tools/latest
+      mv /home/gitpod/android-sdk/cmdline-tools/cmdline-tools/* /home/gitpod/android-sdk/cmdline-tools/latest/
+      rm -rf /home/gitpod/android-sdk/cmdline-tools/cmdline-tools
+      rm commandlinetools-linux-8092744_latest.zip
+      
+      # Set up environment variables
+      export ANDROID_HOME=/home/gitpod/android-sdk
+      export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools"
+      echo 'export ANDROID_HOME=/home/gitpod/android-sdk' >> /home/gitpod/.bashrc
+      echo 'export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools"' >> /home/gitpod/.bashrc
+      
+      # Install Android SDK components
+      yes | sdkmanager --licenses
+      sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+      
+      # Install Chrome
+      wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+      rm google-chrome-stable_current_amd64.deb
+      
+      # Set CHROME_EXECUTABLE
+      echo 'export CHROME_EXECUTABLE=/usr/bin/google-chrome' >> /home/gitpod/.bashrc
+      export CHROME_EXECUTABLE=/usr/bin/google-chrome
+      
+      # Set up Flutter
+      flutter channel stable
+      flutter upgrade
+      flutter config --enable-web
+      flutter config --android-sdk $ANDROID_HOME
+      flutter doctor
+      
+      # Get Flutter dependencies
+      flutter pub get
+    command: |
+      flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0
+
+ports:
+  - port: 8080
+    onOpen: open-preview
+
+vscode:
+  extensions:
+    - Dart-Code.flutter
+    - Dart-Code.dart-code
