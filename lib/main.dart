@@ -22,7 +22,7 @@ class IstiqomahApp extends StatefulWidget {
 }
 
 class _IstiqomahAppState extends State<IstiqomahApp> {
-  Widget _body;
+  Widget? _body;
 
   @override
   void initState() {

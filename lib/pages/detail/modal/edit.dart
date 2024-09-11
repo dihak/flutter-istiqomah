@@ -14,18 +14,18 @@ class _ModalEditHabit extends StatefulWidget {
 class _ModalEditHabitState extends State<_ModalEditHabit> {
   final inputController = TextEditingController();
 
-  bool isReminderActive = false;
-  TimeOfDay selectedTime = TimeOfDay(hour: 07, minute: 00);
+  bool? isReminderActive = false;
+  TimeOfDay? selectedTime = TimeOfDay(hour: 07, minute: 00);
   List<int> activeDay = [1, 2, 3, 4, 5, 6, 7];
 
   _ModalEditHabitState(Habit habit) {
-    inputController.text = habit.name;
+    inputController.text = habit.name!;
     inputController.selection = TextSelection.fromPosition(
         TextPosition(offset: inputController.text.length));
     isReminderActive = habit.time != null;
     if (habit.time != null) {
       selectedTime = habit.time;
-      activeDay = [...habit.daylist];
+      activeDay = [...habit.daylist!];
     }
   }
 
@@ -56,7 +56,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
     Widget toggleButton = GestureDetector(
       onTap: () {
         setState(() {
-          isReminderActive = !isReminderActive;
+          isReminderActive = !isReminderActive!;
         });
       },
       child: Row(
@@ -108,7 +108,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
 
     List<Widget> childrenList = [toggleButton];
 
-    if (isReminderActive) {
+    if (isReminderActive!) {
       childrenList.add(_timePicker(context));
       childrenList.add(SizedBox(height: 10));
       childrenList.add(dateList);
@@ -121,14 +121,14 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
     );
   }
 
-  Widget _dayItem({String text, bool active, Function onTap}) {
+  Widget _dayItem({required String text, required bool active, Function? onTap}) {
     BoxDecoration decorationActive =
         BoxDecoration(color: Colors.white, shape: BoxShape.circle);
 
     BoxDecoration decorationInactive =
         BoxDecoration(color: Colors.white10, shape: BoxShape.circle);
     return GestureDetector(
-        onTap: () => onTap(text),
+        onTap: () => onTap!(text),
         child: Container(
           decoration: active ? decorationActive : decorationInactive,
           width: 35,
@@ -148,21 +148,23 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
 
   String getTime(TimeOfDay time) {
     final period = time.hour >= 12 ? 'PM' : 'AM';
-    final hour = selectedTime.hourOfPeriod
+    final hour = selectedTime!.hourOfPeriod
         .toString()
         .padLeft(2, '0')
         .replaceAll('00', '12');
-    final minute = selectedTime.minute.toString().padLeft(2, '0');
+    final minute = selectedTime!.minute.toString().padLeft(2, '0');
     return "$hour:$minute $period";
   }
 
   Widget _timePicker(BuildContext context) {
     return Center(
-      child: FlatButton(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-        color: Colors.white10,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+          backgroundColor: Colors.white10,
+        ),
         onPressed: () {
-          showTimePicker(context: context, initialTime: selectedTime).then(
+          showTimePicker(context: context, initialTime: selectedTime!).then(
             (value) {
               if (value == null) return;
               setState(() {
@@ -172,7 +174,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
           );
         },
         child: Text(
-          getTime(selectedTime),
+          getTime(selectedTime!),
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
@@ -218,7 +220,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Center(
-            child: FlatButton(
+            child: TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -236,16 +238,20 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
         Padding(
           padding: EdgeInsets.only(bottom: 10),
           child: Center(
-            child: FlatButton(
-              color: Colors.white,
-              textColor: Theme.of(context).primaryColor,
-              disabledColor: Colors.grey,
-              disabledTextColor: Colors.black,
-              splashColor: Colors.blue[50],
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Theme.of(context).primaryColor,
+                disabledBackgroundColor: Colors.grey,
+                disabledForegroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+              ),
               onPressed: () {
                 Habit habit = widget.habit;
                 habit.name = inputController.text;
-                if (isReminderActive && activeDay.length != 0) {
+                if (isReminderActive! && activeDay.length != 0) {
                   habit.time = selectedTime;
                   habit.setDayList(activeDay);
                 } else {
@@ -254,9 +260,6 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
                 }
                 Navigator.pop(context, {habit: habit});
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
               child: Text(
                 "OK",
                 style: TextStyle(fontSize: 15.0),
@@ -269,7 +272,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
   }
 }
 
-Future<Map> modalEditHabit(BuildContext context, Habit habit) async {
+Future<Map?> modalEditHabit(BuildContext context, Habit habit) async {
   return showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(

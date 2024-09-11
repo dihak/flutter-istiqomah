@@ -5,8 +5,8 @@ import 'header.dart';
 import 'date-item.dart';
 
 class Calendar extends StatefulWidget {
-  final Habit habit;
-  final Function(DateTime) onToggleDate;
+  final Habit? habit;
+  final Function(DateTime)? onToggleDate;
 
   Calendar({this.habit, this.onToggleDate});
 
@@ -148,15 +148,15 @@ class _CalendarState extends State<Calendar> {
         date: current,
         isSecondary: date.month != current.month,
         active:
-            widget.habit.data.indexOf(current.toString().substring(0, 10)) !=
+            widget.habit!.data!.indexOf(current.toString().substring(0, 10)) !=
                 -1,
         onPressed: (dateClick) {
-          if (date.month != dateClick.month) {
+          if (date.month != dateClick!.month) {
             setState(() {
               date = new DateTime(dateClick.year, dateClick.month, 1);
             });
           } else {
-            widget.onToggleDate(dateClick);
+            widget.onToggleDate!(dateClick);
           }
         },
         isDisabled: now.compareTo(current) < 0,

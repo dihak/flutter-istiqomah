@@ -4,8 +4,8 @@ class CalendarHeader extends StatelessWidget {
   CalendarHeader(this.text, {this.onPrev, this.onNext});
 
   final String text;
-  final Function onPrev;
-  final Function onNext;
+  final Function? onPrev;
+  final Function? onNext;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CalendarHeader extends StatelessWidget {
               color: Colors.white,
               size: 18,
             ),
-            onPressed: onPrev,
+            onPressed: onPrev as void Function()?,
           ),
           Expanded(
             child: Text(
@@ -38,7 +38,7 @@ class CalendarHeader extends StatelessWidget {
               color: Colors.white,
               size: 18,
             ),
-            onPressed: onNext,
+            onPressed: onNext as void Function()?,
           ),
         ],
       ),

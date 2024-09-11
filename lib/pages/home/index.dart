@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
         child: Container(
@@ -58,16 +58,16 @@ class _HomeState extends State<Home> {
             modalAddHabit(context).then(
               (value) {
                 if (value == null) return;
-                String name = value['name'];
-                TimeOfDay time;
-                List daylist;
+                String? name = value['name'];
+                TimeOfDay? time;
+                List? daylist;
                 if (value['isReminderActive']) {
                   time = value['time'];
                   daylist = value['daylist'];
                 }
                 if (name != null && name != '') {
                   Provider.of<HabitModel>(context, listen: false)
-                      .add(name: name, time: time, daylist: daylist);
+                      .add(name: name, time: time, daylist: daylist as List<int>?);
                 }
               },
             );

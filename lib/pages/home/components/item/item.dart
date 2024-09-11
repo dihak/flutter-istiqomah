@@ -19,14 +19,14 @@ class HabitItem extends StatefulWidget {
     this.onTap,
   });
 
-  final Key key;
-  final int id;
-  final String name;
-  final TimeOfDay time;
-  final List<int> dayList;
-  final List data;
-  final Function(DateTime) toggleDate;
-  final Function onTap;
+  final Key? key;
+  final int? id;
+  final String? name;
+  final TimeOfDay? time;
+  final List<int>? dayList;
+  final List? data;
+  final Function(DateTime)? toggleDate;
+  final Function? onTap;
 
   _HabitItemState createState() => _HabitItemState();
 }
@@ -35,7 +35,7 @@ class _HabitItemState extends State<HabitItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: widget.onTap as void Function()?,
       child: Wrap(children: [
         Container(
           padding: EdgeInsets.all(18),
@@ -59,10 +59,10 @@ class _HabitItemState extends State<HabitItem> {
   }
 
   Widget _header() {
-    String day;
+    late String day;
     if (widget.time != null) {
       List<String> dayString =
-          widget.dayList.map((e) => dayShortName[e - 1]).toList();
+          widget.dayList!.map((e) => dayShortName[e - 1]).toList();
       day = dayString.length == 7 ? 'Everyday' : dayString.join(', ');
     }
     return Padding(
@@ -79,7 +79,7 @@ class _HabitItemState extends State<HabitItem> {
                 ),
                 SizedBox(width: 5),
                 Text(
-                  widget.time.format(context),
+                  widget.time!.format(context),
                   style: TextStyle(fontSize: 14),
                 ),
                 SizedBox(width: 5),
@@ -96,7 +96,7 @@ class _HabitItemState extends State<HabitItem> {
             ),
           if (widget.time != null) SizedBox(height: 10),
           Text(
-            widget.name,
+            widget.name!,
             style: title,
           )
         ],
@@ -115,7 +115,7 @@ class _HabitItemState extends State<HabitItem> {
         HabitDate(
           date: date,
           isChecked: widget.data?.indexOf(dateString) != -1,
-          onChange: () => widget.toggleDate(date),
+          onChange: () => widget.toggleDate!(date),
         ),
       );
     }

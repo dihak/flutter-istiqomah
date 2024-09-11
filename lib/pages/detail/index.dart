@@ -15,10 +15,10 @@ class Detail extends StatefulWidget {
 class _DetailState extends State<Detail> {
   @override
   Widget build(BuildContext context) {
-    Habit habit = ModalRoute.of(context).settings.arguments;
+    Habit habit = ModalRoute.of(context)!.settings.arguments as Habit;
 
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
         child: Container(
@@ -47,7 +47,7 @@ class _DetailState extends State<Detail> {
 
   Widget _alarm(Habit habit) {
     List<String> dayString =
-        habit.daylist.map((e) => dayShortName[e - 1]).toList();
+        habit.daylist!.map((e) => dayShortName[e - 1]).toList();
 
     return Row(
       children: [
@@ -58,7 +58,7 @@ class _DetailState extends State<Detail> {
         SizedBox(width: 5),
         Text(
           MaterialLocalizations.of(context)
-              .formatTimeOfDay(habit.time, alwaysUse24HourFormat: false),
+              .formatTimeOfDay(habit.time!, alwaysUse24HourFormat: false),
           style: TextStyle(fontSize: 14),
         ),
         SizedBox(width: 5),
@@ -95,12 +95,15 @@ class _DetailState extends State<Detail> {
   }
 
   Widget _deleteButton(BuildContext context, Habit habit) {
-    return FlatButton.icon(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      color: Colors.red,
+    return TextButton.icon(
+      style: TextButton.styleFrom(
+        backgroundColor: Colors.red,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        padding: EdgeInsets.all(10),
+      ),
       onPressed: () {
         modalDeleteHabit(context, habit.name).then((value) {
-          if (value) {
+          if (value!) {
             Navigator.pop(context);
             setState(() {
               Provider.of<HabitModel>(context).remove(habit);
@@ -108,7 +111,6 @@ class _DetailState extends State<Detail> {
           }
         });
       },
-      padding: EdgeInsets.all(10),
       icon: Icon(
         Icons.delete,
         color: Colors.white,

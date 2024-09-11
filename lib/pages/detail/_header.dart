@@ -6,7 +6,7 @@ class Header extends StatelessWidget {
   Header(this.habit, {this.onChange});
 
   final Habit habit;
-  final Function(Habit) onChange;
+  final Function(Habit)? onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class Header extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            habit.name,
+            habit.name!,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
@@ -38,7 +38,7 @@ class Header extends StatelessWidget {
           icon: Icon(Icons.edit),
           onPressed: () {
             modalEditHabit(context, habit).then(
-              (value) => {onChange(habit)},
+              (value) => {onChange!(habit)},
             );
           },
         ),

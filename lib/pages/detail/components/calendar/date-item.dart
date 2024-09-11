@@ -10,11 +10,11 @@ class DateItem extends StatelessWidget {
     this.isDisabled = false,
   });
 
-  final DateTime date;
+  final DateTime? date;
   final bool active;
   final bool isSecondary;
   final bool isDisabled;
-  final Function(DateTime) onPressed;
+  final Function(DateTime?)? onPressed;
 
   final BoxDecoration activeStyle = BoxDecoration(
     color: themeData.primaryColor,
@@ -30,9 +30,9 @@ class DateItem extends StatelessWidget {
 
     BoxDecoration decoration = (active ? activeStyle : inActiveStyle);
 
-    if (current.year == date.year &&
-        current.month == date.month &&
-        current.day == date.day) {
+    if (current.year == date!.year &&
+        current.month == date!.month &&
+        current.day == date!.day) {
       decoration = decoration.copyWith(
         border: Border.all(
           color: Colors.white,
@@ -46,7 +46,7 @@ class DateItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           if (onPressed != null && !isDisabled) {
-            onPressed(date);
+            onPressed!(date);
           }
         },
         child: Container(
@@ -59,7 +59,7 @@ class DateItem extends StatelessWidget {
             decoration: decoration,
             padding: EdgeInsets.all(10),
             child: Text(
-              date.day.toString(),
+              date!.day.toString(),
               textAlign: TextAlign.center,
               overflow: TextOverflow.visible,
               style: TextStyle(fontSize: 13),

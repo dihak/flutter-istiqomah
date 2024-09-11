@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:io';
@@ -9,9 +11,9 @@ import 'habit.dart';
 class HabitDbProvider {
   HabitDbProvider._();
   static final HabitDbProvider db = HabitDbProvider._();
-  static Database _database;
+  static Database? _database;
 
-  Future<Database> get database async {
+  Future<Database?> get database async {
     if (_database != null) return _database;
     _database = await initDB();
     return _database;
@@ -68,21 +70,21 @@ class HabitDbProvider {
   }
 
   Future<List<Habit>> getAllHabits() async {
-    final db = await database;
+    final db = await (database as FutureOr<Database>);
     List<Map> results = await db.query("Habit",
         columns: ['id', 'name', 'time'], orderBy: "id ASC");
     List<Map> detail = await db.query("HabitDetail",
         columns: ['id', 'habit_id', 'date'], orderBy: "id ASC");
     List<Map> reminder = await db.query("HabitReminder",
         columns: ['id', 'habit_id', 'weekday'], orderBy: "id ASC");
-    List<Habit> habits = new List();
+    List<Habit> habits = [];
 
     results.forEach((result) {
-      List<String> data = detail
+      List<String?> data = detail
           .where((element) => element['habit_id'] == result['id'])
-          .map<String>((e) => e['date'])
+          .map<String?>((e) => e['date'])
           .toList();
-      Habit habit = Habit.fromMap(result);
+      Habit habit = Habit.fromMap(result as Map<String, dynamic>);
       habit.data = data;
 
       if (result['time'] != null) {
@@ -103,9 +105,9 @@ class HabitDbProvider {
     // Sort order
     Map<String, dynamic> orderState = await getOrderState();
     if (orderState['value'] != '') {
-      List<String> orderList = orderState['value'].split(',');
+      List<String>? orderList = orderState['value'].split(',');
       habits.sort((a, b) {
-        var indexA = orderList.indexOf(a.id.toString());
+        var indexA = orderList!.indexOf(a.id.toString());
         var indexB = orderList.indexOf(b.id.toString());
         if (indexA == -1) indexA = orderList.length;
         if (indexB == -1) indexB = orderList.length;
@@ -117,13 +119,13 @@ class HabitDbProvider {
   }
 
   Future<Habit> getHabitById(int id) async {
-    final db = await database;
+    final db = await (database as FutureOr<Database>);
     var result = await db.query("Habit", where: "id = ?", whereArgs: [id]);
-    return result.isNotEmpty ? Habit.fromMap(result.first) : Null;
+    return (result.isNotEmpty ? Habit.fromMap(result.first) : Null) as FutureOr<Habit>;
   }
 
-  Future<Habit> insert(String name, TimeOfDay time, List<int> daylist) async {
-    final db = await database;
+  Future<Habit> insert(String name, TimeOfDay? time, List<int>? daylist) async {
+    final db = await (database as FutureOr<Database>);
 
     // Insert to db
     var id = await db.insert('Habit', {
@@ -144,7 +146,7 @@ class HabitDbProvider {
   }
 
   Future<bool> toggleDate(Habit habit, DateTime date) async {
-    final db = await database;
+    final db = await (database as FutureOr<Database>);
     final String dateString = date.toString().substring(0, 10);
     var result = await db.delete(
       "HabitDetail",
@@ -163,7 +165,7 @@ class HabitDbProvider {
   }
 
   Future<int> update(Habit habit) async {
-    final db = await database;
+    final db = await (database as FutureOr<Database>);
     var result = await db
         .update("Habit", habit.toMap(), where: "id = ?", whereArgs: [habit.id]);
     if (habit.time == null) {
@@ -171,14 +173,14 @@ class HabitDbProvider {
           where: "habit_id = ?", whereArgs: [habit.id]);
       habit.reminderID = null;
     } else if (habit.reminderID != null) {
-      await db.update("HabitReminder", {'weekday': habit.daylist.join(',')},
+      await db.update("HabitReminder", {'weekday': habit.daylist!.join(',')},
           where: "id = ?", whereArgs: [habit.reminderID]);
     } else {
       habit.reminderID = await db.insert(
         "HabitReminder",
         {
           'habit_id': habit.id,
-          'weekday': habit.daylist.join(','),
+          'weekday': habit.daylist!.join(','),
         },
       );
     }
@@ -186,12 +188,12 @@ class HabitDbProvider {
   }
 
   delete(Habit habit) async {
-    final db = await database;
+    final db = await (database as FutureOr<Database>);
     db.delete("Habit", where: "id = ?", whereArgs: [habit.id]);
   }
 
   Future<Map<String, dynamic>> getOrderState() async {
-    final db = await database;
+    final db = await (database as FutureOr<Database>);
     var result = await db.query('Option', where: "name = 'habit_order'");
     if (result.length == 0) {
       var data = {
@@ -205,8 +207,8 @@ class HabitDbProvider {
     }
   }
 
-  saveOrderState(List<int> indexList) async {
-    final db = await database;
+  saveOrderState(List<int?> indexList) async {
+    final db = await (database as FutureOr<Database>);
     var result = await db.update(
         'Option', {'name': 'habit_order', 'value': indexList.join(',')},
         where: "name = 'habit_order'");

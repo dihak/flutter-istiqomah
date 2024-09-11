@@ -8,19 +8,19 @@ import 'notification.dart';
 class Habit {
   Habit({
     this.id,
-    @required this.name,
+    required this.name,
     this.time,
     this.daylist,
     this.reminderID,
     data,
   }) : this.data = data ?? [];
 
-  int id;
-  String name;
-  int reminderID;
-  TimeOfDay time;
-  List<int> daylist;
-  List<String> data;
+  int? id;
+  String? name;
+  int? reminderID;
+  TimeOfDay? time;
+  List<int>? daylist;
+  List<String?>? data;
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
@@ -30,7 +30,7 @@ class Habit {
       map['id'] = id;
     }
     if (time != null) {
-      map['time'] = '${time.hour}:${time.minute}';
+      map['time'] = '${time!.hour}:${time!.minute}';
     } else {
       map['time'] = null;
     }
@@ -51,12 +51,12 @@ class Habit {
 
   bool toggelDate(DateTime date) {
     final String dateString = date.toString().substring(0, 10);
-    final int index = data.indexOf(dateString);
+    final int index = data!.indexOf(dateString);
     if (index == -1) {
-      data.add(dateString);
+      data!.add(dateString);
       return true;
     } else {
-      data.remove(dateString);
+      data!.remove(dateString);
       return false;
     }
   }
@@ -71,7 +71,7 @@ class Habit {
 class HabitModel extends ChangeNotifier {
   final List<Habit> _habits = [];
   final HabitDbProvider db;
-  Future dbGetAll;
+  Future? dbGetAll;
 
   /// Load Habits
   HabitModel() : db = HabitDbProvider.db {
@@ -91,7 +91,7 @@ class HabitModel extends ChangeNotifier {
   }
 
   /// Add habit
-  void add({@required name, TimeOfDay time, List<int> daylist}) {
+  void add({required name, TimeOfDay? time, List<int>? daylist}) {
     db.insert(name, time, daylist).then((value) {
       _habits.add(value);
       NotificationModel.rescheduleNotification(value);
@@ -136,7 +136,7 @@ class HabitModel extends ChangeNotifier {
     final Habit element = _habits.removeAt(oldIndex);
     _habits.insert(newIndex, element);
     final List habitIndex = _habits.map((e) => e.id).toList();
-    db.saveOrderState(habitIndex);
+    db.saveOrderState(habitIndex as List<int?>);
     notifyListeners();
   }
 }

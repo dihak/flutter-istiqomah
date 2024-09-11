@@ -9,7 +9,7 @@ class _ModalAddHabit extends StatefulWidget {
 class _ModalAddHabitState extends State<_ModalAddHabit> {
   final inputController = TextEditingController();
 
-  bool isReminderActive = false;
+  bool? isReminderActive = false;
   TimeOfDay selectedTime = TimeOfDay(hour: 07, minute: 00);
   List<int> activeDay = [1, 2, 3, 4, 5, 6, 7];
 
@@ -40,7 +40,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
     Widget toggleButton = GestureDetector(
       onTap: () {
         setState(() {
-          isReminderActive = !isReminderActive;
+          isReminderActive = !isReminderActive!;
         });
       },
       child: Row(
@@ -92,7 +92,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
 
     List<Widget> childrenList = [toggleButton];
 
-    if (isReminderActive) {
+    if (isReminderActive!) {
       childrenList.add(_timePicker(context));
       childrenList.add(SizedBox(height: 10));
       childrenList.add(dateList);
@@ -105,14 +105,14 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
     );
   }
 
-  Widget _dayItem({String text, bool active, Function onTap}) {
+  Widget _dayItem({required String text, required bool active, Function? onTap}) {
     BoxDecoration decorationActive =
         BoxDecoration(color: Colors.white, shape: BoxShape.circle);
 
     BoxDecoration decorationInactive =
         BoxDecoration(color: Colors.white10, shape: BoxShape.circle);
     return GestureDetector(
-        onTap: () => onTap(text),
+        onTap: () => onTap!(text),
         child: Container(
           decoration: active ? decorationActive : decorationInactive,
           width: 35,
@@ -142,9 +142,11 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
 
   Widget _timePicker(BuildContext context) {
     return Center(
-      child: FlatButton(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-        color: Colors.white10,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+          backgroundColor: Colors.white10,
+        ),
         onPressed: () {
           showTimePicker(context: context, initialTime: selectedTime).then(
             (value) {
@@ -202,7 +204,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Center(
-            child: FlatButton(
+            child: TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -220,12 +222,16 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
         Padding(
           padding: EdgeInsets.only(bottom: 10),
           child: Center(
-            child: FlatButton(
-              color: Colors.white,
-              textColor: Theme.of(context).primaryColor,
-              disabledColor: Colors.grey,
-              disabledTextColor: Colors.black,
-              splashColor: Colors.blue[50],
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Theme.of(context).primaryColor,
+                disabledBackgroundColor: Colors.grey,
+                disabledForegroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+              ),
               onPressed: () {
                 Navigator.pop(context, {
                   'name': inputController.text,
@@ -234,9 +240,6 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
                   'daylist': activeDay
                 });
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
               child: Text(
                 "OK",
                 style: TextStyle(fontSize: 15.0),
@@ -249,7 +252,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
   }
 }
 
-Future<Map> modalAddHabit(BuildContext context) async {
+Future<Map?> modalAddHabit(BuildContext context) async {
   return showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(

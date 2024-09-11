@@ -62,14 +62,18 @@ class GetStarted extends StatelessWidget {
   }
 
   Widget _button(BuildContext context) {
-    return FlatButton(
-      minWidth: 300,
-      color: Colors.white,
-      textColor: Theme.of(context).primaryColor,
-      disabledColor: Colors.grey,
-      disabledTextColor: Colors.black,
-      padding: EdgeInsets.all(15),
-      splashColor: Colors.blue[50],
+    return TextButton(
+      style: TextButton.styleFrom(
+        minimumSize: Size(300, 0),
+        backgroundColor: Colors.white,
+        foregroundColor: Theme.of(context).primaryColor,
+        disabledBackgroundColor: Colors.grey,
+        disabledForegroundColor: Colors.black,
+        padding: EdgeInsets.all(15),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+      ),
       onPressed: () {
         Future<SharedPreferences> prefsFuture = SharedPreferences.getInstance();
         prefsFuture.then((prefs) {

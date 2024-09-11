@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Future<bool> modalDeleteHabit(BuildContext context, String name) async {
+Future<bool?> modalDeleteHabit(BuildContext context, String? name) async {
   return showDialog<bool>(
     context: context,
     barrierDismissible: false, // user must tap button!

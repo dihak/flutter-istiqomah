@@ -7,10 +7,10 @@ import 'package:timezone/timezone.dart' as tz;
 
 class ReceivedNotification {
   ReceivedNotification({
-    @required this.id,
-    @required this.title,
-    @required this.body,
-    @required this.payload,
+    required this.id,
+    required this.title,
+    required this.body,
+    required this.payload,
   });
 
   final int id;
@@ -32,7 +32,7 @@ Future initializeNotification(BuildContext context) async {
     android: initializationSettingsAndroid,
   );
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-      onSelectNotification: (String payload) async {
+      onSelectNotification: (String? payload) async {
     if (payload != null) {
       if (payload.startsWith('habit-')) {
         int habitID = int.parse(payload.substring(6));
@@ -55,7 +55,7 @@ class NotificationModel {
   static final FlutterLocalNotificationsPlugin notif =
       FlutterLocalNotificationsPlugin();
 
-  static const AndroidNotificationDetails androidPlatformChannelSpecifics =
+  static AndroidNotificationDetails androidPlatformChannelSpecifics =
       AndroidNotificationDetails(
           'habit-notif', 'Reminder', 'Daily Activity Reminder',
           importance: Importance.max,
@@ -63,29 +63,29 @@ class NotificationModel {
           ticker: 'ticker',
           color: Colors.blue);
 
-  static const NotificationDetails platformChannelSpecifics =
+  static NotificationDetails platformChannelSpecifics =
       NotificationDetails(android: androidPlatformChannelSpecifics);
 
   static rescheduleNotification(Habit habit) async {
-    int notifId = (habit.id * 7) - 7;
+    int notifId = (habit.id! * 7) - 7;
     // Cancel all schedule
     for (var i = 0; i < 7; i++) {
       await notif.cancel(notifId + i);
     }
 
-    if (habit.time == null || habit.daylist.length == 0) return;
+    if (habit.time == null || habit.daylist!.length == 0) return;
 
     DateTime now = DateTime.now();
     tz.TZDateTime schedule = tz.TZDateTime.local(
       now.year,
       now.month,
       now.day,
-      habit.time.hour,
-      habit.time.minute,
+      habit.time!.hour,
+      habit.time!.minute,
     );
 
     // Re-schedule
-    for (var item in habit.daylist) {
+    for (var item in habit.daylist!) {
       tz.TZDateTime newSchedule =
           schedule.add(new Duration(days: item - now.weekday));
       if (newSchedule.isBefore(DateTime.now())) {
@@ -93,7 +93,7 @@ class NotificationModel {
       }
       await notif.zonedSchedule(
           notifId + (item - 1),
-          habit.name,
+          habit.name!,
           'Do not forget to Complete ${habit.name} today!!',
           newSchedule,
           platformChannelSpecifics,
@@ -106,7 +106,7 @@ class NotificationModel {
   }
 
   static removeNotification(Habit habit) async {
-    int notifId = (habit.id * 7) - 7;
+    int notifId = (habit.id! * 7) - 7;
     // Cancel all schedule
     for (var i = 0; i < 7; i++) {
       await notif.cancel(notifId + i);

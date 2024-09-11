@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class HabitDate extends StatelessWidget {
-  HabitDate({Key key, this.date, this.isChecked = false, this.onChange})
+  HabitDate({Key? key, this.date, this.isChecked = false, this.onChange})
       : super(key: key);
 
-  final DateTime date;
+  final DateTime? date;
   final bool isChecked;
-  final Function onChange;
+  final Function? onChange;
 
   @override
   Widget build(BuildContext context) {
     final List dayName = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    final int weekday = date.weekday - 1;
+    final int weekday = date!.weekday - 1;
     final BoxDecoration active = BoxDecoration(
       color: Theme.of(context).primaryColor,
       shape: BoxShape.circle,
@@ -20,7 +20,7 @@ class HabitDate extends StatelessWidget {
         BoxDecoration(color: Colors.white12, shape: BoxShape.circle);
 
     return GestureDetector(
-      onTap: () => {if (onChange != null) onChange()},
+      onTap: () => {if (onChange != null) onChange!()},
       child: Container(
         child: Column(
           children: [
@@ -35,7 +35,7 @@ class HabitDate extends StatelessWidget {
               decoration: isChecked ? active : inActive,
               child: Center(
                 child: Text(
-                  date.day.toString(),
+                  date!.day.toString(),
                   style: TextStyle(fontSize: 15),
                 ),
               ),

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'item/item.dart';
 
 class HabitList extends StatefulWidget {
-  HabitList({Key key}) : super(key: key);
+  HabitList({Key? key}) : super(key: key);
 
   @override
   _HabitListState createState() => _HabitListState();

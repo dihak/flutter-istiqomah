@@ -55,7 +55,7 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
   final Color barBackgroundColor = themeData.primaryColor;
   final Duration animDuration = const Duration(milliseconds: 250);
 
-  int touchedIndex;
+  int? touchedIndex;
 
   bool isPlaying = false;
 
@@ -85,13 +85,13 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
       x: x,
       barRods: [
         BarChartRodData(
-          y: y,
-          colors: isTouched ? [Colors.blue[100]] : [barColor],
+          toY: y,
+          color: isTouched ? Colors.blue[100]! : barColor,
           width: width,
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            y: 31,
-            colors: [barBackgroundColor],
+            toY: 31,
+            color: barBackgroundColor,
           ),
         ),
       ],
@@ -105,10 +105,10 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
     int year = currentDate.year;
     return List.generate(7, (i) {
       DateTime date = new DateTime(year, ++month);
-      final double total = widget.habit.data
+      final double total = widget.habit.data!
           .where(
             (element) =>
-                element.indexOf(
+                element!.indexOf(
                     '${date.year}-${date.month.toString().padLeft(2, '0')}') !=
                 -1,
           )
@@ -121,12 +121,12 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
   BarChartData mainBarData() {
     return BarChartData(
       barTouchData: BarTouchData(
-        touchCallback: (barTouchResponse) {
+        touchCallback: (FlTouchEvent event, BarTouchResponse? barTouchResponse) {
           setState(() {
-            if (barTouchResponse.spot != null &&
-                barTouchResponse.touchInput is! FlPanEnd &&
-                barTouchResponse.touchInput is! FlLongPressEnd) {
-              touchedIndex = barTouchResponse.spot.touchedBarGroupIndex;
+            if (barTouchResponse?.spot != null &&
+                event is! FlPanEndEvent &&
+                event is! FlLongPressEnd) {
+              touchedIndex = barTouchResponse!.spot!.touchedBarGroupIndex;
             } else {
               touchedIndex = -1;
             }
@@ -135,17 +135,26 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
       ),
       titlesData: FlTitlesData(
         show: true,
-        bottomTitles: SideTitles(
-          showTitles: true,
-          getTextStyles: (value) => const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
-          margin: 16,
-          getTitles: (double value) {
-            return monthShortName[value.toInt()];
-          },
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            getTitlesWidget: (double value, TitleMeta meta) {
+              return Text(
+                monthShortName[value.toInt()],
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                ),
+              );
+            },
+            reservedSize: 16,
+          ),
         ),
-        leftTitles: SideTitles(
-          showTitles: false,
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: false,
+          ),
         ),
       ),
       borderData: FlBorderData(
