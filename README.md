@@ -7,6 +7,12 @@ Set the Plan, Go Now, and Be Istiqomah
 [![Google play store](https://user-images.githubusercontent.com/10445482/103167325-cf79f700-485c-11eb-84c1-8958c70bedf9.png)](https://play.google.com/store/apps/details?id=com.istiqomah)
 
 
+## Quick Start
+
+[![Open in IDX](https://cdn.idx.dev/btn/open_purple_32.svg)](https://idx.google.com/import?url=https://github.com/dihak/flutter-istiqomah)
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/dihak/flutter-istiqomah)
+
 ## Screenshot
 ![Screens](https://user-images.githubusercontent.com/10445482/100530232-ea3b5a80-3221-11eb-8447-86bf6c0d3c26.png)
 

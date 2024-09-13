@@ -135,9 +135,12 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
       ),
       titlesData: FlTitlesData(
         show: true,
+        rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
+            reservedSize: 40,
             getTitlesWidget: (double value, TitleMeta meta) {
               return Text(
                 monthShortName[value.toInt()],
@@ -145,10 +148,10 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 13,
+                  height: 3,
                 ),
               );
             },
-            reservedSize: 16,
           ),
         ),
         leftTitles: AxisTitles(
