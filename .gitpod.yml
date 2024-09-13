@@ -1,6 +1,6 @@
 tasks:
   - name: Setup Flutter and Android
-    init: |
+    before: |
       # Install Flutter
       git clone https://github.com/flutter/flutter.git -b stable /home/gitpod/flutter
       
