@@ -81,7 +81,7 @@ class _DetailState extends State<Detail> {
       onToggleDate: (date) {
         Feedback.forTap(context);
         setState(() {
-          Provider.of<HabitModel>(context).toggleDate(habit, date);
+          Provider.of<HabitModel>(context, listen: false).toggleDate(habit, date);
         });
       },
     );

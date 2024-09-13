@@ -32,8 +32,7 @@ dependencies:
   path_provider: ^2.0.4
   sqflite: ^2.0.2
   fl_chart: ^0.69.0
-  flutter_local_notifications: ^5.0.0+4
-  flutter_native_timezone: ^2.0.0
+  flutter_local_notifications: ^17.2.2
   shared_preferences: ^2.0.7
   flutter_svg: ^2.0.10+1
 

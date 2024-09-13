@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:istiqomah/models/habit.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -31,12 +30,14 @@ Future initializeNotification(BuildContext context) async {
   final InitializationSettings initializationSettings = InitializationSettings(
     android: initializationSettingsAndroid,
   );
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-      onSelectNotification: (String? payload) async {
-    if (payload != null) {
-      if (payload.startsWith('habit-')) {
-        int habitID = int.parse(payload.substring(6));
-        Habit habit = await habitAdapter.getById(habitID);
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+    onDidReceiveNotificationResponse: (NotificationResponse response) async {
+      final String? payload = response.payload;
+      if (payload != null) {
+        if (payload.startsWith('habit-')) {
+          int habitID = int.parse(payload.substring(6));
+          Habit habit = await habitAdapter.getById(habitID);
         Navigator.pushNamed(
           context,
           '/detail',
@@ -46,8 +47,8 @@ Future initializeNotification(BuildContext context) async {
     }
   });
 
-  final String currentTimeZone = await FlutterNativeTimezone.getLocalTimezone();
   tz.initializeTimeZones();
+  final String currentTimeZone = tz.local.name;
   tz.setLocalLocation(tz.getLocation(currentTimeZone));
 }
 
@@ -57,7 +58,8 @@ class NotificationModel {
 
   static AndroidNotificationDetails androidPlatformChannelSpecifics =
       AndroidNotificationDetails(
-          'habit-notif', 'Reminder', 'Daily Activity Reminder',
+          'habit-notif', 'Reminder',
+          channelDescription: 'Daily Activity Reminder',
           importance: Importance.max,
           priority: Priority.high,
           ticker: 'ticker',
