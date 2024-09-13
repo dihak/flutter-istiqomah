@@ -38,6 +38,9 @@ tasks:
       # Set CHROME_EXECUTABLE
       echo 'export CHROME_EXECUTABLE=/usr/bin/google-chrome' >> /home/gitpod/.bashrc
       export CHROME_EXECUTABLE=/usr/bin/google-chrome
+
+      # Install Java
+      sdk install java 23.1.4.r21-nik
       
       # Set up Flutter
       flutter channel stable
