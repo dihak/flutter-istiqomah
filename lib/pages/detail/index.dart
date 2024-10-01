@@ -76,21 +76,27 @@ class _DetailState extends State<Detail> {
   }
 
   Widget _calendar(BuildContext context, Habit habit) {
-    return Calendar(
-      habit: habit,
-      onToggleDate: (date) {
-        Feedback.forTap(context);
-        setState(() {
-          Provider.of<HabitModel>(context, listen: false).toggleDate(habit, date);
-        });
+    return Consumer<HabitModel>(
+      builder: (context, habitModel, child) {
+        return Calendar(
+          habit: habit,
+          onToggleDate: (date) {
+            Feedback.forTap(context);
+            habitModel.toggleDate(habit, date);
+          },
+        );
       },
     );
   }
 
   Widget _chart(BuildContext context, Habit habit) {
-    return Container(
-      child: MonthlyChart(habit),
-      height: 350,
+    return Consumer<HabitModel>(
+      builder: (context, habitModel, child) {
+        return Container(
+          child: MonthlyChart(habit),
+          height: 350,
+        );
+      },
     );
   }
 

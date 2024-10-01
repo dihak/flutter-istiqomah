@@ -120,6 +120,9 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
 
   BarChartData mainBarData() {
     return BarChartData(
+      gridData: FlGridData(
+        show: false,
+      ),
       barTouchData: BarTouchData(
         touchCallback: (FlTouchEvent event, BarTouchResponse? barTouchResponse) {
           setState(() {
