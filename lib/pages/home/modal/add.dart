@@ -55,6 +55,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
               },
               value: isReminderActive,
               activeColor: Colors.blue[700],
+              checkColor: Colors.white,
             ),
           ),
           SizedBox(width: 10),
@@ -107,10 +108,10 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
 
   Widget _dayItem({required String text, required bool active, Function? onTap}) {
     BoxDecoration decorationActive =
-        BoxDecoration(color: Colors.white, shape: BoxShape.circle);
+        BoxDecoration(color: Colors.white10, shape: BoxShape.circle);
 
     BoxDecoration decorationInactive =
-        BoxDecoration(color: Colors.white10, shape: BoxShape.circle);
+        BoxDecoration(shape: BoxShape.circle);
     return GestureDetector(
         onTap: () => onTap!(text),
         child: Container(
@@ -121,7 +122,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
             child: Text(
               text,
               style: TextStyle(
-                color: active ? Colors.blue : Colors.white70,
+                color: active ? Colors.white : Colors.white70,
                 fontWeight: active ? FontWeight.bold : FontWeight.normal,
                 fontSize: 13,
               ),
@@ -146,9 +147,13 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
         style: TextButton.styleFrom(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
           backgroundColor: Colors.white10,
+          foregroundColor: Colors.white,
         ),
         onPressed: () {
-          showTimePicker(context: context, initialTime: selectedTime).then(
+          showTimePicker(
+            context: context,
+            initialTime: selectedTime!,
+          ).then(
             (value) {
               if (value == null) return;
               setState(() {
@@ -158,7 +163,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
           );
         },
         child: Text(
-          getTime(selectedTime),
+          getTime(selectedTime!),
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
