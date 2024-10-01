@@ -38,7 +38,11 @@ class Header extends StatelessWidget {
           icon: Icon(Icons.edit),
           onPressed: () {
             modalEditHabit(context, habit).then(
-              (value) => {onChange!(habit)},
+              (value) {
+                if (value != null) {
+                  onChange!(value);
+                }
+              },
             );
           },
         ),

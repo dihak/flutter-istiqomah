@@ -258,7 +258,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
                   habit.time = null;
                   habit.daylist = null;
                 }
-                Navigator.pop(context, {habit: habit});
+                Navigator.pop(context, habit);
               },
               child: Text(
                 "OK",
@@ -272,7 +272,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
   }
 }
 
-Future<Map?> modalEditHabit(BuildContext context, Habit habit) async {
+Future<Habit?> modalEditHabit(BuildContext context, Habit habit) async {
   return showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(

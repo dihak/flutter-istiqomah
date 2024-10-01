@@ -40,8 +40,8 @@ class _DetailState extends State<Detail> {
   }
 
   Widget _header(BuildContext context, Habit habit) {
-    return Header(habit, onChange: (name) {
-      Provider.of<HabitModel>(context, listen: true).update(habit);
+    return Header(habit, onChange: (habit) {
+      Provider.of<HabitModel>(context, listen: false).update(habit);
     });
   }
 
