@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/constants/app.dart';
+import 'package:istiqomah/constants/app_theme.dart';
 import 'package:istiqomah/models/habit.dart';
 
 class _ModalEditHabit extends StatefulWidget {
@@ -71,6 +72,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
               },
               value: isReminderActive,
               activeColor: Colors.blue[700],
+              checkColor: Colors.white,
             ),
           ),
           SizedBox(width: 10),
@@ -123,10 +125,10 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
 
   Widget _dayItem({required String text, required bool active, Function? onTap}) {
     BoxDecoration decorationActive =
-        BoxDecoration(color: Colors.white, shape: BoxShape.circle);
+        BoxDecoration(color: Colors.white10, shape: BoxShape.circle);
 
     BoxDecoration decorationInactive =
-        BoxDecoration(color: Colors.white10, shape: BoxShape.circle);
+        BoxDecoration(shape: BoxShape.circle);
     return GestureDetector(
         onTap: () => onTap!(text),
         child: Container(
@@ -137,7 +139,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
             child: Text(
               text,
               style: TextStyle(
-                color: active ? Colors.blue : Colors.white70,
+                color: active ? Colors.white : Colors.white70,
                 fontWeight: active ? FontWeight.bold : FontWeight.normal,
                 fontSize: 13,
               ),
@@ -162,9 +164,13 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
         style: TextButton.styleFrom(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
           backgroundColor: Colors.white10,
+          foregroundColor: Colors.white,
         ),
         onPressed: () {
-          showTimePicker(context: context, initialTime: selectedTime!).then(
+          showTimePicker(
+            context: context,
+            initialTime: selectedTime!,
+          ).then(
             (value) {
               if (value == null) return;
               setState(() {
