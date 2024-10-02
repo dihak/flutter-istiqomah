@@ -152,7 +152,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
         onPressed: () {
           showTimePicker(
             context: context,
-            initialTime: selectedTime!,
+            initialTime: selectedTime,
           ).then(
             (value) {
               if (value == null) return;
@@ -163,7 +163,7 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
           );
         },
         child: Text(
-          getTime(selectedTime!),
+          getTime(selectedTime),
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),

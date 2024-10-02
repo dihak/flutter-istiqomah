@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/constants/app.dart';
-import 'package:istiqomah/constants/app_theme.dart';
 import 'package:istiqomah/models/habit.dart';
 
 class _ModalEditHabit extends StatefulWidget {

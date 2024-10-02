@@ -54,7 +54,7 @@ Future initializeNotification(BuildContext context) async {
   // Request notification permissions for Android 13 or higher
   final androidImplementation = flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
-  await androidImplementation?.requestExactAlarmsPermission();
+  await androidImplementation?.requestNotificationsPermission();
 
   // Create the notification channel
   const AndroidNotificationChannel channel = AndroidNotificationChannel(
