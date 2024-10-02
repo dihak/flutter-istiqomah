@@ -13,6 +13,29 @@ Set the Plan, Go Now, and Be Istiqomah
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/dihak/flutter-istiqomah)
 
+## Setup Guide
+
+To set up the Istiqomah application on your local machine, follow these steps:
+
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/dihak/flutter-istiqomah.git
+    cd flutter-istiqomah
+    ```
+
+2. **Install Flutter:**
+    Follow the instructions on the [official Flutter website](https://flutter.dev/docs/get-started/install) to install Flutter on your machine.
+
+3. **Install dependencies:**
+    ```bash
+    flutter pub get
+    ```
+
+4. **Run the application:**
+    ```bash
+    flutter run
+    ```
+
 ## Screenshot
 ![Screens](https://user-images.githubusercontent.com/10445482/100530232-ea3b5a80-3221-11eb-8447-86bf6c0d3c26.png)
 
