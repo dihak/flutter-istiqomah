@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqomah/models/habit.dart';
-import 'package:istiqomah/pages/detail/modal/delete.dart';
 import 'package:istiqomah/pages/detail/modal/edit.dart';
-import 'package:provider/provider.dart';
 
 class Header extends StatelessWidget {
   const Header(this.habit, {this.onChange,this.onRemove});
