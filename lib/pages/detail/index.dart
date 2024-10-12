@@ -31,7 +31,6 @@ class _DetailState extends State<Detail> {
               SizedBox(height: 15),
               _calendar(context, habit),
               _chart(context, habit),
-              _deleteButton(context, habit)
             ],
           ),
         ),
@@ -42,7 +41,7 @@ class _DetailState extends State<Detail> {
   Widget _header(BuildContext context, Habit habit) {
     return Header(habit, onChange: (habit) {
       Provider.of<HabitModel>(context, listen: false).update(habit);
-    });
+    }, onRemove: (Habit habit)=> Provider.of<HabitModel>(context, listen: false).remove(habit));
   }
 
   Widget _alarm(Habit habit) {
@@ -97,34 +96,6 @@ class _DetailState extends State<Detail> {
           height: 350,
         );
       },
-    );
-  }
-
-  Widget _deleteButton(BuildContext context, Habit habit) {
-    return TextButton.icon(
-      style: TextButton.styleFrom(
-        backgroundColor: Colors.red,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        padding: EdgeInsets.all(10),
-      ),
-      onPressed: () {
-        modalDeleteHabit(context, habit.name).then((value) {
-          if (value!) {
-            Navigator.pop(context);
-            setState(() {
-              Provider.of<HabitModel>(context).remove(habit);
-            });
-          }
-        });
-      },
-      icon: Icon(
-        Icons.delete,
-        color: Colors.white,
-      ),
-      label: Text(
-        'Delete',
-        style: TextStyle(color: Colors.white, fontSize: 15),
-      ),
     );
   }
 }
