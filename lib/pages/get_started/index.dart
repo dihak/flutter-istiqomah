@@ -52,11 +52,14 @@ class GetStarted extends StatelessWidget {
 
     List<Widget> listWidget = _createListWidget(context, lists);
 
-    return (Container(
+    return (SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: listWidget,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: listWidget,
+        ),
       ),
     ));
   }

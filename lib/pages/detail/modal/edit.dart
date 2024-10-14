@@ -3,7 +3,7 @@ import 'package:istiqomah/constants/app.dart';
 import 'package:istiqomah/models/habit.dart';
 
 class _ModalEditHabit extends StatefulWidget {
-  _ModalEditHabit(this.habit);
+  const _ModalEditHabit(this.habit);
 
   final Habit habit;
 
@@ -15,7 +15,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
   final inputController = TextEditingController();
 
   bool? isReminderActive = false;
-  TimeOfDay? selectedTime = TimeOfDay(hour: 07, minute: 00);
+  TimeOfDay? selectedTime = const TimeOfDay(hour: 07, minute: 00);
   List<int> activeDay = [1, 2, 3, 4, 5, 6, 7];
 
   _ModalEditHabitState(Habit habit) {
@@ -29,13 +29,14 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20),
+        const Padding(
+          padding: EdgeInsets.only(bottom: 20),
           child: Text(
             'Change Habits',
             style: TextStyle(
@@ -60,6 +61,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
         });
       },
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
             width: 20,
@@ -74,14 +76,13 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
               checkColor: Colors.white,
             ),
           ),
-          SizedBox(width: 10),
-          Expanded(
+          const SizedBox(width: 10),
+          const Expanded(
               child: Text(
             'Reminder',
             style: TextStyle(fontSize: 15),
           )),
         ],
-        mainAxisAlignment: MainAxisAlignment.start,
       ),
     );
 
@@ -92,11 +93,11 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
         for (var item in dayShortName)
           _dayItem(
             text: item,
-            active: activeDay.indexOf(dayShortName.indexOf(item) + 1) != -1,
+            active: activeDay.contains(dayShortName.indexOf(item) + 1),
             onTap: (value) {
               int week = dayShortName.indexOf(value) + 1;
               setState(() {
-                if (activeDay.indexOf(week) == -1) {
+                if (!activeDay.contains(week)) {
                   activeDay.add(week);
                 } else {
                   activeDay.remove(week);
@@ -111,9 +112,9 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
 
     if (isReminderActive!) {
       childrenList.add(_timePicker(context));
-      childrenList.add(SizedBox(height: 10));
+      childrenList.add(const SizedBox(height: 10));
       childrenList.add(dateList);
-      childrenList.add(SizedBox(height: 20));
+      childrenList.add(const SizedBox(height: 20));
     }
 
     return Column(
@@ -122,12 +123,13 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
     );
   }
 
-  Widget _dayItem({required String text, required bool active, Function? onTap}) {
+  Widget _dayItem(
+      {required String text, required bool active, Function? onTap}) {
     BoxDecoration decorationActive =
-        BoxDecoration(color: Colors.white10, shape: BoxShape.circle);
+        const BoxDecoration(color: Colors.white10, shape: BoxShape.circle);
 
     BoxDecoration decorationInactive =
-        BoxDecoration(shape: BoxShape.circle);
+        const BoxDecoration(shape: BoxShape.circle);
     return GestureDetector(
         onTap: () => onTap!(text),
         child: Container(
@@ -161,7 +163,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
     return Center(
       child: TextButton(
         style: TextButton.styleFrom(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
           backgroundColor: Colors.white10,
           foregroundColor: Colors.white,
         ),
@@ -180,7 +182,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
         },
         child: Text(
           getTime(selectedTime!),
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -190,26 +192,33 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 5),
+        const Padding(
+          padding: EdgeInsets.only(bottom: 5),
           child: Text(
             'Name',
             style: TextStyle(color: Colors.white, fontSize: 15),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5.0,
         ),
-        TextField(
+        TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (val) {
+            if (val.toString().isEmpty) {
+              return "Add a Name";
+            }
+            return null;
+          },
           autofocus: true,
           controller: inputController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             filled: true,
             fillColor: Color(0x33FFFFFF),
             border: OutlineInputBorder(borderSide: (BorderSide.none)),
             contentPadding: EdgeInsets.all(10),
           ),
-          style: TextStyle(color: Color(0xFFFFFFFF)),
+          style: const TextStyle(color: Color(0xFFFFFFFF)),
         ),
       ],
     );
@@ -229,7 +238,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
+              child: const Text(
                 'Cancel',
                 style: TextStyle(
                   color: Colors.white,
@@ -241,7 +250,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.only(bottom: 10),
           child: Center(
             child: TextButton(
               style: TextButton.styleFrom(
@@ -249,23 +258,44 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
                 foregroundColor: Theme.of(context).primaryColor,
                 disabledBackgroundColor: Colors.grey,
                 disabledForegroundColor: Colors.black,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
               ),
               onPressed: () {
-                Habit habit = widget.habit;
-                habit.name = inputController.text;
-                if (isReminderActive! && activeDay.length != 0) {
-                  habit.time = selectedTime;
-                  habit.setDayList(activeDay);
+                if (inputController.text.toString().isEmpty == false) {
+                  Habit habit = widget.habit;
+                  habit.name = inputController.text;
+                  if (isReminderActive! && activeDay.isNotEmpty) {
+                    habit.time = selectedTime;
+                    habit.setDayList(activeDay);
+                  } else {
+                    habit.time = null;
+                    habit.daylist = null;
+                  }
+                  Navigator.pop(context, habit);
                 } else {
-                  habit.time = null;
-                  habit.daylist = null;
+                  showDialog(
+                    context: context,
+                    barrierDismissible:
+                        true, // Prevent dismissing the dialog by tapping outside
+                    builder: (BuildContext context) {
+                      return const AlertDialog(
+                        title: Text(
+                          "Information",
+                          textAlign: TextAlign.center,
+                        ),
+                        content: Text(
+                          "Fill the Name",
+                          style: TextStyle(color: Colors.red),
+                          textAlign: TextAlign.center,
+                        ),
+                      );
+                    },
+                  );
                 }
-                Navigator.pop(context, habit);
               },
-              child: Text(
+              child: const Text(
                 "OK",
                 style: TextStyle(fontSize: 15.0),
               ),
@@ -279,7 +309,7 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
 
 Future<Habit?> modalEditHabit(BuildContext context, Habit habit) async {
   return showModalBottomSheet(
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(10.0),
       ),

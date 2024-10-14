@@ -18,10 +18,10 @@ Future<void> main() async {
 
 class IstiqomahApp extends StatefulWidget {
   @override
-  _IstiqomahAppState createState() => _IstiqomahAppState();
+  IstiqomahAppState createState() => IstiqomahAppState();
 }
 
-class _IstiqomahAppState extends State<IstiqomahApp> {
+class IstiqomahAppState extends State<IstiqomahApp> {
   Widget? _body;
 
   @override

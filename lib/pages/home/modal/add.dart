@@ -106,12 +106,12 @@ class _ModalAddHabitState extends State<_ModalAddHabit> {
     );
   }
 
-  Widget _dayItem({required String text, required bool active, Function? onTap}) {
+  Widget _dayItem(
+      {required String text, required bool active, Function? onTap}) {
     BoxDecoration decorationActive =
         BoxDecoration(color: Colors.white10, shape: BoxShape.circle);
 
-    BoxDecoration decorationInactive =
-        BoxDecoration(shape: BoxShape.circle);
+    BoxDecoration decorationInactive = BoxDecoration(shape: BoxShape.circle);
     return GestureDetector(
         onTap: () => onTap!(text),
         child: Container(
