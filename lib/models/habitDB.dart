@@ -123,7 +123,9 @@ class HabitDbProvider {
     final db = await database;
     if (db == null) throw Exception("Database is null");
     var result = await db.query("Habit", where: "id = ?", whereArgs: [id]);
-    return result.isNotEmpty ? Habit.fromMap(result.first) : throw Exception("Habit not found");
+    return result.isNotEmpty
+        ? Habit.fromMap(result.first)
+        : throw Exception("Habit not found");
   }
 
   Future<Habit> insert(String name, TimeOfDay? time, List<int>? daylist) async {

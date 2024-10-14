@@ -124,7 +124,8 @@ class BarChartMonthlyState extends State<BarChartMonthly> {
         show: false,
       ),
       barTouchData: BarTouchData(
-        touchCallback: (FlTouchEvent event, BarTouchResponse? barTouchResponse) {
+        touchCallback:
+            (FlTouchEvent event, BarTouchResponse? barTouchResponse) {
           setState(() {
             if (barTouchResponse?.spot != null &&
                 event is! FlPanEndEvent &&

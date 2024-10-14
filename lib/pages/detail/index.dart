@@ -39,9 +39,12 @@ class _DetailState extends State<Detail> {
   }
 
   Widget _header(BuildContext context, Habit habit) {
-    return Header(habit, onChange: (habit) {
-      Provider.of<HabitModel>(context, listen: false).update(habit);
-    }, onRemove: (Habit habit)=> Provider.of<HabitModel>(context, listen: false).remove(habit));
+    return Header(habit,
+        onChange: (habit) {
+          Provider.of<HabitModel>(context, listen: false).update(habit);
+        },
+        onRemove: (Habit habit) =>
+            Provider.of<HabitModel>(context, listen: false).remove(habit));
   }
 
   Widget _alarm(Habit habit) {

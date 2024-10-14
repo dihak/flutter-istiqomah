@@ -4,7 +4,8 @@ import 'package:istiqomah/pages/detail/modal/delete.dart';
 import 'package:istiqomah/pages/detail/modal/edit.dart';
 
 class Header extends StatelessWidget {
-  const Header(this.habit, {Key? key, this.onChange,this.onRemove}) : super(key: key);
+  const Header(this.habit, {Key? key, this.onChange, this.onRemove})
+      : super(key: key);
 
   final Habit habit;
   final Function(Habit)? onChange;
@@ -40,15 +41,15 @@ class Header extends StatelessWidget {
           icon: const Icon(Icons.delete),
           onPressed: () {
             modalDeleteHabit(context, habit.name).then((value) {
-          if (value!) {
-            Navigator.pop(context);
+              if (value!) {
+                Navigator.pop(context);
 
-            onRemove!(habit);
-          }
-        });
+                onRemove!(habit);
+              }
+            });
           },
         ),
-         IconButton(
+        IconButton(
           padding: const EdgeInsets.all(0),
           constraints: const BoxConstraints(),
           color: Colors.white,

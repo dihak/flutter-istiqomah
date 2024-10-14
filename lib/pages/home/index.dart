@@ -66,8 +66,8 @@ class _HomeState extends State<Home> {
                   daylist = value['daylist'];
                 }
                 if (name != null && name != '') {
-                  Provider.of<HabitModel>(context, listen: false)
-                      .add(name: name, time: time, daylist: daylist as List<int>?);
+                  Provider.of<HabitModel>(context, listen: false).add(
+                      name: name, time: time, daylist: daylist as List<int>?);
                 }
               },
             );

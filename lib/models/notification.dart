@@ -29,7 +29,7 @@ Future initializeNotification(BuildContext context) async {
   final InitializationSettings initializationSettings = InitializationSettings(
     android: initializationSettingsAndroid,
   );
-  
+
   await flutterLocalNotificationsPlugin.initialize(
     initializationSettings,
     onDidReceiveNotificationResponse: (NotificationResponse response) async {
@@ -48,12 +48,14 @@ Future initializeNotification(BuildContext context) async {
   );
 
   tz.initializeTimeZones();
-  String currentTimeZone = await FlutterTimezone.getLocalTimezone(); // Use flutter_timezone to get device timezone
+  String currentTimeZone = await FlutterTimezone
+      .getLocalTimezone(); // Use flutter_timezone to get device timezone
   tz.setLocalLocation(tz.getLocation(currentTimeZone));
 
   // Request notification permissions for Android 13 or higher
-  final androidImplementation = flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+  final androidImplementation =
+      flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>();
   await androidImplementation?.requestNotificationsPermission();
 
   // Create the notification channel
@@ -64,7 +66,8 @@ Future initializeNotification(BuildContext context) async {
     importance: Importance.max,
   );
   await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 }
 
@@ -73,8 +76,7 @@ class NotificationModel {
       FlutterLocalNotificationsPlugin();
 
   static AndroidNotificationDetails androidPlatformChannelSpecifics =
-      const AndroidNotificationDetails(
-          'habit-notif', 'Reminder',
+      const AndroidNotificationDetails('habit-notif', 'Reminder',
           channelDescription: 'Daily Activity Reminder',
           importance: Importance.max,
           priority: Priority.high,
