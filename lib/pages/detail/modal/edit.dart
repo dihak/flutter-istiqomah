@@ -204,9 +204,9 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
         ),
         TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          validator: (val) {
-            if (val.toString().isEmpty) {
-              return "Add a Name";
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Name cannot be empty";
             }
             return null;
           },
@@ -274,25 +274,6 @@ class _ModalEditHabitState extends State<_ModalEditHabit> {
                     habit.daylist = null;
                   }
                   Navigator.pop(context, habit);
-                } else {
-                  showDialog(
-                    context: context,
-                    barrierDismissible:
-                        true, // Prevent dismissing the dialog by tapping outside
-                    builder: (BuildContext context) {
-                      return const AlertDialog(
-                        title: Text(
-                          "Information",
-                          textAlign: TextAlign.center,
-                        ),
-                        content: Text(
-                          "Fill the Name",
-                          style: TextStyle(color: Colors.red),
-                          textAlign: TextAlign.center,
-                        ),
-                      );
-                    },
-                  );
                 }
               },
               child: const Text(
